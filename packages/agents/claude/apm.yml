@@ -1,0 +1,15 @@
+---
+# APM sub-package: Claude Code agent primitives. Restricted to the
+# claude target, so its content deploys only into a consumer that
+# activates that target. Holds the skills and the guard-markdown hook
+# declaration. Consumers pin it as
+# tbhb/repotools/packages/agents/claude#vX.Y.Z; the repo root manifest
+# depends on it by local path. The cog pre-bump hook keeps `version`
+# in lockstep with the root (see cog.toml).
+name: repotools-agents-claude
+version: 0.7.1
+description: Claude Code agent primitives for tbhb repositories
+author: tbhb
+license: Apache-2.0
+targets:
+  - claude

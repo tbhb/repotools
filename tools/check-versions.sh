@@ -2,11 +2,15 @@
 # check-versions — assert every published version literal names the
 # latest release tag.
 #
-# Six files carry the version: the APM manifest, the Python package, the
-# pre-commit hook manifest's usage comment, two install pins in the
-# README, and the uv lockfile's entry for the editable Python package.
-# cog.toml's pre_bump_hooks rewrite all six during a bump, from the
-# version cog is about to tag. This is the witness that they did.
+# Eleven sites carry the version: the root APM manifest, the four
+# sub-package APM manifests under packages/agents/, the Python package,
+# the pre-commit hook manifest's usage comment, three install pins in
+# the README (the bare repo ref, the sub-package refs, and the
+# pre-commit rev its own code block shows), and the uv lockfile's entry
+# for the editable Python package. cog.toml's pre_bump_hooks rewrite
+# all eleven during a bump, from the version cog is about to tag; one
+# hook covers both README ref pins, since its pattern already matches
+# a bare or sub-package ref alike. This is the witness that they did.
 #
 # Hooks alone would have none. Before they existed, five of the six took
 # a hand edit, no gate read them, and every one had fallen behind — the
@@ -25,7 +29,7 @@
 # rather than HEAD, so this holds at every commit and not only at release
 # time. That is why it belongs in the lint aggregate.
 #
-# Adding a seventh site means a line here and a hook in cog.toml, in that
+# Adding another site means a line here and a hook in cog.toml, in that
 # order: add the check first and watch it go red.
 #
 # Findings print one per line in the shape the vale agent template uses,
@@ -112,9 +116,14 @@ check_uv_lock() {
 }
 
 check_site apm.yml '^version: ' "version: $version"
+check_site packages/agents/common/apm.yml '^version: ' "version: $version"
+check_site packages/agents/claude/apm.yml '^version: ' "version: $version"
+check_site packages/agents/codex/apm.yml '^version: ' "version: $version"
+check_site packages/agents/agy/apm.yml '^version: ' "version: $version"
 check_site packages/repotools/pyproject.toml '^version = ' "version = \"$version\""
 check_site .pre-commit-hooks.yaml 'rev: v[0-9]' "rev: v$version"
 check_site README.md 'tbhb/repotools#v[0-9]' "tbhb/repotools#v$version"
+check_site README.md 'tbhb/repotools/packages' "#v$version"
 check_site README.md 'rev: v[0-9]' "rev: v$version"
 check_uv_lock "version = \"$version\""
 

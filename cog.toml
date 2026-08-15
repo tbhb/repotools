@@ -22,13 +22,23 @@ tag_prefix = "v"
 # package in the lockfile has a `version =` line, which is what -0777
 # and the /m anchor are for.
 #
-# tools/check-versions.sh asserts the result. Adding a seventh site
+# tools/check-versions.sh asserts the result. Adding another site
 # means a line there and a hook here, in that order.
+#
+# The README hook matches both the bare repo ref
+# (tbhb/repotools#vX.Y.Z) and a sub-package ref
+# (tbhb/repotools/packages/agents/claude#vX.Y.Z), keeping the matched
+# prefix in $1 so the optional sub-path survives the rewrite untouched.
+# The g flag covers a line naming more than one ref.
 pre_bump_hooks = [
   "perl -pi -e 's/^version: .*/version: {{version}}/' apm.yml",
+  "perl -pi -e 's/^version: .*/version: {{version}}/' packages/agents/common/apm.yml",
+  "perl -pi -e 's/^version: .*/version: {{version}}/' packages/agents/claude/apm.yml",
+  "perl -pi -e 's/^version: .*/version: {{version}}/' packages/agents/codex/apm.yml",
+  "perl -pi -e 's/^version: .*/version: {{version}}/' packages/agents/agy/apm.yml",
   "perl -pi -e 's/^version = .*/version = \"{{version}}\"/' packages/repotools/pyproject.toml",
   "perl -pi -e 's{rev: v[0-9.]+}{rev: v{{version}}}' .pre-commit-hooks.yaml",
-  "perl -pi -e 's{tbhb/repotools#v[0-9.]+}{tbhb/repotools#v{{version}}}' README.md",
+  "perl -pi -e 's{(tbhb/repotools(?:/[a-z/-]+)?#v)[0-9.]+}{${1}{{version}}}g' README.md",
   "perl -pi -e 's{rev: v[0-9.]+}{rev: v{{version}}}' README.md",
   "perl -0777 -pi -e 's/^name = \"repotools\"\nversion = .*/name = \"repotools\"\nversion = \"{{version}}\"/m' uv.lock",
 ]

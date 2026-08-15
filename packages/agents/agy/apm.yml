@@ -1,0 +1,18 @@
+---
+# APM sub-package scaffold: reserved for Antigravity (agy) primitives.
+# The directory and manifest name say `agy`, the ecosystem name for
+# the CLI, while the target slug below says `antigravity`, APM's
+# canonical slug — `agy` is a CLI-flag-only alias and is illegal in a
+# manifest. Empty until a later program fills it in; the layout, CI,
+# versioning, and gitignores are already correct so the first
+# primitive can land without further setup. Consumers pin it as
+# tbhb/repotools/packages/agents/agy#vX.Y.Z; the repo root manifest
+# depends on it by local path. The cog pre-bump hook keeps `version`
+# in lockstep with the root (see cog.toml).
+name: repotools-agents-agy
+version: 0.7.1
+description: Antigravity (agy) agent primitives for tbhb repositories (scaffold)
+author: tbhb
+license: Apache-2.0
+targets:
+  - antigravity
