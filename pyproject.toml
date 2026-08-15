@@ -89,6 +89,9 @@ constraint-dependencies = ["gitpython>=3.1.55"]
 
 [tool.uv.workspace]
 members = ["packages/*"]
+# packages/agents/* are APM packages with no pyproject.toml, and a
+# member the glob matches without one fails the whole sync.
+exclude = ["packages/agents"]
 
 # Resolve each member from the workspace rather than from PyPI, which is
 # what makes the install editable and lets the suite import it without a
@@ -136,8 +139,9 @@ ignore-docstrings = true
 
 [tool.pyrefly]
 # .claude/ stays out for the reason given at [tool.pytest]: it is a deployed
-# copy of .apm/, and including both reports every error twice.
-project-includes = ["packages", ".apm", "tools", "tests"]
+# copy of the .apm/ trees under packages/, and including both reports every
+# error twice.
+project-includes = ["packages", "tools", "tests"]
 project-excludes = [".claude"]
 # The strict preset is pyrefly's hardest baseline: it demands parameter
 # annotations and refuses implicit Any. The errors table below names each
@@ -357,10 +361,10 @@ addopts = [
   "--import-mode=importlib",
 ]
 # tests/ mirrors the source tree: tests/skills/<skill>/scripts/ covers
-# .apm/skills/<skill>/scripts/, and tests/tools/ covers tools/. They sit
-# outside the trees they test because APM deploys every file under a skill
-# directory, and a consumer repo has no pytest to run them with. The
-# structure also gives skill evals an obvious home later.
+# packages/agents/<agent>/.apm/skills/<skill>/scripts/, and tests/tools/
+# covers tools/. They sit outside the trees they test because APM deploys
+# every file under a skill directory, and a consumer repo has no pytest to
+# run them with. The structure also gives skill evals an obvious home later.
 testpaths = ["packages", "tests"]
 
 [tool.ruff]

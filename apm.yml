@@ -1,21 +1,27 @@
 ---
-# APM package manifest. Declares this repo as the shared agent package
-# for tbhb repositories: the primitives under .apm/ deploy into any
-# consuming repo via `apm install tbhb/repotools#vX.Y.Z`.
-#
-# `includes: auto` self-applies the root .apm/ content, so running
-# `apm install` here dogfoods the package into this repo's own
-# harness layout. The cog pre-bump hook keeps `version` in lockstep
-# with the vX.Y.Z git tags (see cog.toml).
+# APM workspace and consumer manifest for this repo. The primitives
+# themselves live in the four sub-packages under packages/agents/,
+# which this file depends on by local path so `apm install` here
+# dogfoods them into this repo's own harness layout. All three
+# harnesses are active, so a harness-neutral primitive deploys into
+# every one of them and a targeted package reaches only its own.
+# Consumers pin a sub-package by tag instead, as
+# tbhb/repotools/packages/agents/claude#vX.Y.Z. The cog pre-bump hook
+# keeps `version` in lockstep with the vX.Y.Z git tags (see cog.toml).
 name: repotools
 version: 0.7.1
-description: Shared agent package for tbhb repositories
+description: Shared agent packages for tbhb repositories
 author: tbhb
 license: Apache-2.0
-target:
+targets:
   - claude
+  - codex
+  - antigravity
 dependencies:
-  apm: []
+  apm:
+    - ./packages/agents/common
+    - ./packages/agents/claude
+    - ./packages/agents/codex
+    - ./packages/agents/agy
   mcp: []
-includes: auto
 scripts: {}

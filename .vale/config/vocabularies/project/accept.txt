@@ -10,6 +10,7 @@ CLIs
 CRA
 CVE[s]?
 Cilium
+Claude|claude
 CodeQL
 Codecov
 DCO
@@ -169,6 +170,8 @@ agentcontext
 agenthooks
 agentic
 agentstore
+agy
+always_on
 argv
 assistedAt
 autobuild

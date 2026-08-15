@@ -16,11 +16,12 @@ import pytest
 
 # tests/ mirrors the source tree one level down: this file sits at
 # tests/skills/<skill>/scripts/ and its subject at
-# .apm/skills/<skill>/scripts/. The tests live outside .apm/ because APM
-# deploys every file under a skill directory, and a consumer repo has no
-# pytest to run them with.
+# packages/agents/claude/.apm/skills/<skill>/scripts/. The tests live
+# outside the package because APM deploys every file under a skill
+# directory, and a consumer repo has no pytest to run them with.
 REPO_ROOT = Path(__file__).resolve().parents[4]
-SCRIPT = REPO_ROOT / ".apm/skills/resolve-rebase-conflicts/scripts/conflict_shape.py"
+SKILL_DIR = REPO_ROOT / "packages/agents/claude/.apm/skills/resolve-rebase-conflicts"
+SCRIPT = SKILL_DIR / "scripts/conflict_shape.py"
 assert SCRIPT.is_file(), f"subject not found: {SCRIPT}"
 
 OK = 0
