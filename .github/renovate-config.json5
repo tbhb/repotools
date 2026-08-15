@@ -105,6 +105,29 @@
       matchFileNames: [".vale.ini"],
     },
 
+    // The two directories a consumer's vendir.yml vendors whole from this
+    // repository: the conf.d tool pins and the shared task files. Both
+    // directories declare themselves fully owned in that vendir.yml —
+    // "anything undeclared inside them is deleted on sync, so nothing
+    // else may write there" — which makes a Renovate PR editing either
+    // one, in a consumer, a write to a file the consumer doesn't own.
+    // The built-in mise manager still sees a real version pin sitting in
+    // a real TOML file and opens one anyway, bumping a single tool ahead
+    // of the vendored ref instead of through it. The vendored payload
+    // then disagrees with what vendir.lock.yml recorded, and
+    // `repotools:check-vendored` fails the drift it exists to catch:
+    // every one of vale-ai-tells' PRs #17 through #22 hit exactly this.
+    //
+    // repotools itself is excluded because these are its own paths
+    // here, not a vendored copy of them, and Renovate tracking them is
+    // what the "repotools" groupName rule below assembles a release
+    // out of.
+    {
+      matchFileNames: [".config/mise/conf.d/**", ".repotools/**"],
+      excludeRepositories: ["tbhb/repotools"],
+      enabled: false,
+    },
+
     // One review surface for a repotools release, across every manager
     // that sees one of its nine pin sites: `github-actions` for the four
     // reusable-workflow callers, `pre-commit` for the hook `rev:`,
