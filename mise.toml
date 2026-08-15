@@ -361,10 +361,12 @@ description = "Lint Python against the full ruff ruleset"
 run = "uv run ruff check"
 
 # The [tool.pyrefly] tables in pyproject.toml pin every error kind and
-# name the project scope, so a bare project-mode check is the whole gate.
+# name the project scope, so a project-mode check is the whole gate. The
+# wrapper exists for agent worktrees, where pyrefly's hidden-path
+# skipping leaves it an empty view; see the script header.
 [tasks.lint-types]
 description = "Type check with pyrefly"
-run = "uv run pyrefly check"
+run = "bash tools/lint-types.sh"
 
 # Scope and threshold live in pyproject.toml under [tool.complexipy].
 [tasks.lint-complexity]
