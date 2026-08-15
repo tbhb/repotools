@@ -7,10 +7,11 @@ Shared agent tooling for tbhb repositories. The repo provides Go command-line to
 Repositories across tbhb install the shared primitives with the [APM CLI](https://microsoft.github.io/apm/quickstart/):
 
 ```bash
-apm install tbhb/repotools#v0.7.1
+apm install tbhb/repotools/packages/agents/claude#v0.7.1
+apm install tbhb/repotools/packages/agents/common#v0.7.1
 ```
 
-The package deploys these primitives from [`.apm/`](.apm/):
+The package deploys these primitives from sub-packages under [`packages/agents/`](packages/agents/): `claude` carries the skills below plus the `guard-markdown` hook declaration, and `common` carries the harness-neutral `worktree-wip` instructions.
 
 | Primitive | Type | Purpose |
 | --- | --- | --- |
@@ -19,7 +20,7 @@ The package deploys these primitives from [`.apm/`](.apm/):
 | `worktree-wip` | instructions | Stash and work-in-progress rules for repos that run more than one agent worktree session. |
 | `guard-markdown` | hook | `PreToolUse` gate on `Write` and `Edit` that refuses Markdown whose paragraphs span more than one line. |
 
-This repo dogfoods its own package: `apm install` deploys the primitives into the local harness layout, and CI rejects drift between `.apm/` sources and the deployed copies.
+Pinning the bare repo (`apm install tbhb/repotools#v0.7.1`) resolves the root workspace manifest, whose dependencies on the four sub-packages under `packages/agents/` are local paths. Whether a remote consumer's `apm` resolves those transitively is unverified as of this writing, so pin a sub-package directly until that's confirmed. This repo dogfoods its own package: `apm install` deploys the primitives into the local harness layout, and CI rejects drift between the `packages/agents/*/.apm/` sources and the deployed copies.
 
 ## Checks
 
