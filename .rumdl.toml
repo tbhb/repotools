@@ -15,15 +15,18 @@ exclude = [
 ]
 
 # Per-path rule exclusions for the cog-generated CHANGELOG.md, which
-# repeats version headings (MD024). MD013 is already disabled globally,
-# and MD041 stays enforced here (the file opens with `# Changelog`); the
-# heading-less release-note fragments disable MD041 in their own recipe.
+# repeats version headings (MD024) and opens with a horizontal rule
+# immediately followed by the `<!-- release -->` insertion marker cog
+# writes with no blank line between them (MD065). MD013 is already
+# disabled globally, and MD041 stays enforced here (the file opens with
+# `# Changelog`); the heading-less release-note fragments disable MD041
+# in their own recipe.
 #
 # The pull request template opens at level 2 instead, so MD041 comes off
 # for that path: GitHub renders the pull request title above the body,
 # and a level 1 heading inside the template would repeat it.
 [per-file-ignores]
-"CHANGELOG.md" = ["MD024"]
+"CHANGELOG.md" = ["MD024", "MD065"]
 ".github/pull_request_template.md" = ["MD041"]
 
 [MD003]
