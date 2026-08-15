@@ -65,6 +65,18 @@ gremlins-report.json
 .claude/worktrees/
 .claude/settings.local.json
 
+# Codex. Nothing deploys here yet, so this is pre-emptive: the entries
+# exist so the first real deploy or session lands in a tree that
+# already knows what to ignore, matching the Claude Code policy above.
+# Extend this list once the real tooling shows what it writes.
+.codex/worktrees/
+.codex/settings.local.json
+
+# Antigravity / agents. Same pre-emptive reasoning as the Codex block
+# above; nothing writes these paths yet either.
+.agents/worktrees/
+.agents/settings.local.json
+
 # Vale synced packages (keep the repo-local style and its vocabulary).
 # Each negation needs the parent un-ignored first — git can't re-include
 # a child whose ancestor directory stays excluded. The agent output
