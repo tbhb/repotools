@@ -27,7 +27,7 @@ The prek commit-msg hook on `.git/COMMIT_EDITMSG` stays the real gate. `COMMIT_A
 
 That script is the only thing here that commits. It checks the review signature, records what the index holds, commits, then reads the commit back and prints any staged path missing from it. prek stashes and restores the worktree around the pre-commit hooks, so a failed attempt can leave a path unstaged that you staged before it, and without that comparison the retry commits part of the group and reports nothing.
 
-The skill's frontmatter carries a pair of hooks, scoped to a commit workflow and inert outside one. Preflight arms them at the commit `HEAD` sits on, and the commit that ends the workflow moves `HEAD` past that mark and stands them down. One refuses whole-tree staging along with any `git commit` written out by hand, which is what keeps the script the only entry point. The other records which bytes `review-commit-message` signed off on. Editing the draft after the review means running the review again.
+The skill's frontmatter carries a pair of hooks scoped to a commit workflow and inert outside one. Preflight arms them at the commit `HEAD` sits on, and the commit that ends the workflow moves `HEAD` past that mark and stands them down. One refuses whole-tree staging along with any `git commit` written out by hand, which is what keeps the script the only entry point. The other records which bytes `review-commit-message` signed off on. Editing the draft after the review means running the review again.
 
 ## Pull requests
 
@@ -60,7 +60,7 @@ The rest of the lifecycle splits into three skills, each usable on its own:
 
 Left alone, GitHub writes the squash message by concatenating every commit on the branch. That text has never passed a commit-msg hook, and nothing lints it afterwards, so `merge-pr` writes the message instead.
 
-Each of these skills carries guard hooks in its frontmatter, scoped to the workflow and inert outside one. The `gh pr` guards work by allowlist: reading through `list`, `view`, `diff`, `status`, and `checks` stays open, and everything that changes a pull request goes through the wrapping script. Naming the read-only verbs rather than the mutating ones means a verb `gh` grows later arrives already covered. `watch-pr` and `fix-pr` refuse the narrower set of forms their own scripts wrap.
+Each of these skills carries guard hooks in its frontmatter scoped to the workflow and inert outside one. The `gh pr` guards work by allowlist: reading through `list`, `view`, `diff`, `status`, and `checks` stays open, and everything that changes a pull request goes through the wrapping script. Naming the read-only verbs rather than the mutating ones means a verb `gh` grows later arrives already covered. `watch-pr` and `fix-pr` refuse the narrower set of forms their own scripts wrap.
 
 A skill's hooks outlive the turn that invoked it, so more than one of these guards is often live at once. The `pr` and `merge-pr` guards share one allowlist so they agree wherever both run. `watch-pr` and `fix-pr` claim only the narrower forms their own scripts wrap, because a broader claim there would refuse a sibling's legitimate calls.
 
