@@ -6,14 +6,17 @@ name: apm-package
 #
 #   validate: runs the pinned apm CLI through primitive validation, a
 #   frozen install against apm.lock.yaml, the lockfile/on-disk audit,
-#   and a working-tree check proving the committed deployed copies
-#   under .claude/ match the .apm/ sources. The CLI is a mise pin like
-#   every other tool here, so mise.lock carries its checksum and
+#   and a working-tree check proving the committed deployed mirrors
+#   under .claude/ and .agents/ match the sources under
+#   packages/agents/*/.apm/. The CLI is a mise pin like every other
+#   tool here, so mise.lock carries its checksum and
 #   repotools:check-toolchain covers it.
 #
-#   scan-skills: runs Cisco's skill-scanner over .apm/skills via the
-#   upstream reusable workflow, uploading SARIF to code scanning so a
-#   risky skill change surfaces as a PR annotation.
+#   scan-skills: runs Cisco's skill-scanner over packages/agents via
+#   the upstream reusable workflow, uploading SARIF to code scanning
+#   so a risky skill change surfaces as a PR annotation. scan-all mode
+#   recurses, so one parent path covers every package's skills today
+#   and picks up codex/agy without an edit once they gain any.
 
 on:
   push:
@@ -21,13 +24,14 @@ on:
     paths:
       - apm.yml
       - apm.lock.yaml
-      - .apm/**
+      - packages/agents/**
       - hooks/**
       - .claude/rules/**
       - .claude/skills/**
       - .claude/hooks/**
       - .claude/settings.json
       - .claude/apm-hooks.json
+      - .agents/**
       - .github/workflows/apm-package.yml
       # The apm pin and its checksums: a bump changes what every step
       # below runs, so it has to trigger this workflow.
@@ -37,13 +41,14 @@ on:
     paths:
       - apm.yml
       - apm.lock.yaml
-      - .apm/**
+      - packages/agents/**
       - hooks/**
       - .claude/rules/**
       - .claude/skills/**
       - .claude/hooks/**
       - .claude/settings.json
       - .claude/apm-hooks.json
+      - .agents/**
       - .github/workflows/apm-package.yml
       # The apm pin and its checksums: a bump changes what every step
       # below runs, so it has to trigger this workflow.
@@ -111,6 +116,13 @@ jobs:
     # yamllint disable-line rule:line-length
     uses: cisco-ai-defense/skill-scanner/.github/workflows/scan-skills.yml@ec7c7f09c38c30af00e145e113b69fae96cbeb1a # 2.0.13
     with:
-      skill_path: .apm/skills
+      # scan-skills' default scan_mode is scan-all, which always adds
+      # --recursive --check-overlap, and its own docs say skill_path
+      # takes "a single skill directory, or a parent directory for
+      # scan-all". Pointing it at the packages/agents parent finds
+      # every package's skills in one pass (today only
+      # packages/agents/claude/.apm/skills) and needs no edit when
+      # codex/agy gain skills of their own.
+      skill_path: packages/agents
       format: sarif
       fail_on_severity: high

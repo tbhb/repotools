@@ -246,19 +246,21 @@ repos:
 
       # APM's hook merge is additive and never reconciles a declaration that
       # was removed or that sorts ahead of an existing one, so .claude/ can
-      # disagree with .apm/ while every file involved looks reasonable. The
-      # apm-package workflow already catches it, but only after a push, and
-      # `apm install` is not the fix — `mise run apm-sync` is. This hook moves
-      # that finding to the commit.
+      # disagree with the packaged sources while every file involved looks
+      # reasonable. The apm-package workflow already catches it, but only
+      # after a push, and `apm install` is not the fix — `mise run apm-sync`
+      # is. This hook moves that finding to the commit.
       #
-      # Scoped to the inputs that can change the deployed set. apm.lock.yaml
-      # is deliberately absent: it never records hook declarations, so it
-      # stays byte-identical across a hook add or delete.
+      # Scoped to the inputs that can change the deployed set: the root
+      # manifest, each agent package's manifest and .apm/ tree, and the two
+      # .claude/ files the merge writes. apm.lock.yaml is deliberately
+      # absent: it never records hook declarations, so it stays
+      # byte-identical across a hook add or delete.
       - id: apm-audit
         name: apm audit
         entry: tools/mise-bootstrap run lint-apm
         language: system
-        files: ^(\.apm/|apm\.yml$|\.claude/(settings|apm-hooks)\.json$)
+        files: ^(packages/agents/[^/]+/(\.apm/|apm\.yml$)|apm\.yml$|\.claude/(settings|apm-hooks)\.json$)
         pass_filenames: false
 
       # uv.lock drift, the Python counterpart to the vendor-tidy hook

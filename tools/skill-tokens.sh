@@ -26,7 +26,8 @@
 # upload rejects a body for being long. The hard limits on name and
 # description live in tools/skill-limits.sh, which stays offline.
 #
-# Usage: skill-tokens.sh [skill-dir ...]     (default: .apm/skills/*/)
+# Usage: skill-tokens.sh [skill-dir ...]
+#        (default: packages/agents/*/.apm/skills/*/)
 # Env:   MODEL to count against another model.
 #        BODY_BUDGET to move the warning threshold.
 set -euo pipefail
@@ -113,7 +114,7 @@ net() {
 budget_exceeded=0
 dirs=("$@")
 if [ ${#dirs[@]} -eq 0 ]; then
-  dirs=(.apm/skills/*/)
+  dirs=(packages/agents/*/.apm/skills/*/)
 fi
 
 for dir in "${dirs[@]}"; do
@@ -193,7 +194,7 @@ for line in os.environ["BUNDLED"].split("\n"):
         continue
     path, tokens, size = line.split("\t")
     # Relative to the skill directory, so the record reads the same in
-    # the .apm source and in the copy apm deploys under .claude.
+    # the packaged source and in the copy apm deploys under .claude.
     rows.append({
         "path": os.path.relpath(path, os.environ["SKILL_DIR"]),
         "tokens": int(tokens),

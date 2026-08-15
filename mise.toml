@@ -931,8 +931,8 @@ run = [
 # entries for a hook upstream has since deleted, still firing. Clearing
 # the keys APM owns first hands the merge the empty slate its replay
 # assumes. Drop only the hooks key, so a hand-authored setting elsewhere
-# in the file survives. Reach for this on any change under .apm/hooks/
-# and on any dependency bump.
+# in the file survives. Reach for this on any change under an agent
+# package's .apm/hooks/ and on any dependency bump.
 [tasks.apm-sync]
 description = "Redeploy APM primitives from a cleared hook state"
 depends_post = ["lint-apm"]

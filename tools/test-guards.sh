@@ -29,7 +29,7 @@ unset CDPATH GREP_OPTIONS
 IFS=$' \t\n'
 
 root=$(git rev-parse --show-toplevel)
-SCRIPTS="$root/.apm/skills/fix-prose/scripts"
+SCRIPTS="$root/packages/agents/claude/.apm/skills/fix-prose/scripts"
 
 pass=0
 fail=0

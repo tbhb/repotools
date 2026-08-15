@@ -42,6 +42,17 @@ report() {
   findings=$((findings + 1))
 }
 
+# Whether any agent package publishes a skill of this name. The sources
+# are split across packages/agents/<agent>/.apm/, so no single directory
+# answers this.
+packaged() {
+  local dir
+  for dir in packages/agents/*/.apm/skills/"$1"; do
+    [ -d "$dir" ] && return 0
+  done
+  return 1
+}
+
 files=("$@")
 if [ ${#files[@]} -eq 0 ]; then
   # Whatever git can see, matching how lint-shell scopes itself. A new
@@ -52,18 +63,18 @@ if [ ${#files[@]} -eq 0 ]; then
     files+=("$f")
   done < <(command git -c core.quotePath=false ls-files \
     --cached --others --exclude-standard \
-    '.apm/skills/*/scripts/*.sh' 'hooks/*.sh' 'scripts/*.sh' 'tools/*.sh')
+    'packages/agents/*/.apm/skills/*/scripts/*.sh' 'hooks/*.sh' 'scripts/*.sh' 'tools/*.sh')
 
   # Then the skills that live under .claude/ alone. A repo-local skill
-  # has no .apm/ source, so the glob above cannot reach its scripts,
+  # has no packaged source, so the glob above cannot reach its scripts,
   # while the .claude/ copy of a published skill is a mirror of one it
   # already scanned and would report every finding twice. Asking whether
-  # .apm/ holds a skill of the same name separates the two, and keeps
-  # the next local skill covered without an edit here.
+  # any agent package holds a skill of the same name separates the two,
+  # and keeps the next local skill covered without an edit here.
   while IFS= read -r f; do
     skill=${f#.claude/skills/}
     skill=${skill%%/*}
-    [ -d ".apm/skills/$skill" ] && continue
+    packaged "$skill" && continue
     files+=("$f")
   done < <(command git -c core.quotePath=false ls-files \
     --cached --others --exclude-standard '.claude/skills/*/scripts/*.sh')

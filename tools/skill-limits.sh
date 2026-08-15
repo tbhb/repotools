@@ -42,21 +42,32 @@ report() {
   findings=$((findings + 1))
 }
 
+# Whether any agent package publishes a skill of this name. The sources
+# are split across packages/agents/<agent>/.apm/, so no single directory
+# answers this.
+packaged() {
+  local dir
+  for dir in packages/agents/*/.apm/skills/"$1"; do
+    [ -d "$dir" ] && return 0
+  done
+  return 1
+}
+
 dirs=("$@")
 if [ ${#dirs[@]} -eq 0 ]; then
-  dirs=(.apm/skills/*/)
+  dirs=(packages/agents/*/.apm/skills/*/)
   # Then the skills that live under .claude/ alone. A repo-local skill
-  # has no .apm/ source, so the glob above cannot reach it, while the
+  # has no packaged source, so the glob above cannot reach it, while the
   # limits it has to meet are the platform's and apply just the same.
   # The .claude/ copy of a published skill is a mirror of one already in
-  # the list, so asking whether .apm/ holds a skill of the same name
-  # separates the two and keeps the next local skill covered without an
-  # edit here.
+  # the list, so asking whether any package holds a skill of the same
+  # name separates the two and keeps the next local skill covered
+  # without an edit here.
   for candidate in .claude/skills/*/; do
     [ -d "$candidate" ] || continue
     skill=${candidate#.claude/skills/}
     skill=${skill%/}
-    [ -d ".apm/skills/$skill" ] || dirs+=("$candidate")
+    packaged "$skill" || dirs+=("$candidate")
   done
 fi
 
