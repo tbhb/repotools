@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file. See [conven
 - - -
 <!-- release -->
 
+## [v0.7.1](https://github.com/tbhb/repotools/compare/3b1d0a77791684a5ab64170acaba5132c63550b7..v0.7.1) - 2026-08-15
+
+### Bug Fixes
+
+- (**renovate**) stop tracking vendored tool pins in consumer repos (#53) - ([ae9f41f](https://github.com/tbhb/repotools/commit/ae9f41ffee0d4477eceba751158af8e6d7e95b97)) - [@tbhb](https://github.com/tbhb)
+
+- - -
+
+<!-- release -->
+
 ## [v0.7.0](https://github.com/tbhb/repotools/compare/ecd105a8a91f9c649d9ef8a87adfb9442d0ba637..v0.7.0) - 2026-08-04
 
 ### Bug Fixes
