@@ -3,7 +3,7 @@
 # Tests for tools/check-versions.sh, the witness on cog.toml's
 # pre_bump_hooks.
 #
-# Each test builds a throwaway repository carrying the same six sites
+# Each test builds a throwaway repository carrying the same eleven sites
 # the real tree does, because the script asks git for the tag and reads
 # the files relative to the toplevel. Running it against this repository
 # instead would only ever prove the aligned case, and the cases worth
@@ -22,23 +22,30 @@ setup() {
   export GIT_AUTHOR_NAME='Test' GIT_AUTHOR_EMAIL='test@example.com'
   export GIT_COMMITTER_NAME='Test' GIT_COMMITTER_EMAIL='test@example.com'
 
-  mkdir -p "$REPO/packages/repotools"
+  mkdir -p "$REPO/packages/repotools" "$REPO/packages/agents/common" \
+    "$REPO/packages/agents/claude" "$REPO/packages/agents/codex" \
+    "$REPO/packages/agents/agy"
   cd "$REPO"
   git init --quiet --initial-branch=main .
 }
 
-# The six sites at $1, laid out the way the real files carry them:
-# apm.yml and pyproject.toml anchored at line start, the hook manifest's
-# inside an indented comment, the README's two under surrounding prose,
-# and uv.lock's under the package entry that names it. The lockfile gets
-# a decoy package carrying its own version line, because that is what
-# stops the check from matching the first `version =` it finds.
+# The eleven sites at $1, laid out the way the real files carry them:
+# apm.yml, the four sub-package apm.yml files, and pyproject.toml
+# anchored at line start, the hook manifest's inside an indented
+# comment, the README's three under surrounding prose, and uv.lock's
+# under the package entry that names it. The lockfile gets a decoy
+# package carrying its own version line, because that is what stops
+# the check from matching the first `version =` it finds.
 write_sites() {
   local v=$1
   printf 'name: repotools\nversion: %s\n' "$v" > apm.yml
+  printf 'name: repotools-agents-common\nversion: %s\n' "$v" > packages/agents/common/apm.yml
+  printf 'name: repotools-agents-claude\nversion: %s\n' "$v" > packages/agents/claude/apm.yml
+  printf 'name: repotools-agents-codex\nversion: %s\n' "$v" > packages/agents/codex/apm.yml
+  printf 'name: repotools-agents-agy\nversion: %s\n' "$v" > packages/agents/agy/apm.yml
   printf '[project]\nname = "repotools"\nversion = "%s"\n' "$v" > packages/repotools/pyproject.toml
   printf '# Reference it with:\n#\n#     rev: v%s\n' "$v" > .pre-commit-hooks.yaml
-  printf '# repotools\n\n    apm install tbhb/repotools#v%s\n\nAnd:\n\n    rev: v%s\n' "$v" "$v" > README.md
+  printf '# repotools\n\n    apm install tbhb/repotools#v%s\n\n    apm install tbhb/repotools/packages/agents/claude#v%s\n\nAnd:\n\n    rev: v%s\n' "$v" "$v" "$v" > README.md
   printf '[[package]]\nname = "pytest"\nversion = "9.9.9"\n\n[[package]]\nname = "repotools"\nversion = "%s"\nsource = { editable = "packages/repotools" }\n' "$v" > uv.lock
 }
 
@@ -70,14 +77,27 @@ commit_at() {
   [[ $output == *"TOTAL: 1 finding(s)"* ]]
 }
 
-@test "reports both README sites independently" {
+@test "fails naming a stale sub-package apm.yml literal" {
   commit_at 1.2.3
-  printf '# repotools\n\n    apm install tbhb/repotools#v1.2.3\n\nAnd:\n\n    rev: v0.9.0\n' > README.md
+  printf 'name: repotools-agents-claude\nversion: 1.2.2\n' > packages/agents/claude/apm.yml
 
   run "$SCRIPT"
   [ "$status" -eq 1 ]
-  [[ $output == *"README.md:7"* ]]
+  [[ $output == *"packages/agents/claude/apm.yml:2"* ]]
+  [[ $output == *'expected `version: 1.2.3`'* ]]
+  [[ $output == *'found `version: 1.2.2`'* ]]
+  [[ $output == *"TOTAL: 1 finding(s)"* ]]
+}
+
+@test "reports each README site independently" {
+  commit_at 1.2.3
+  printf '# repotools\n\n    apm install tbhb/repotools#v1.2.3\n\n    apm install tbhb/repotools/packages/agents/claude#v1.2.3\n\nAnd:\n\n    rev: v0.9.0\n' > README.md
+
+  run "$SCRIPT"
+  [ "$status" -eq 1 ]
+  [[ $output == *"README.md:9"* ]]
   [[ $output != *"README.md:3"* ]]
+  [[ $output != *"README.md:5"* ]]
   [[ $output == *"TOTAL: 1 finding(s)"* ]]
 }
 
@@ -125,7 +145,7 @@ commit_at() {
 
   run "$SCRIPT" 9.9.9
   [ "$status" -eq 1 ]
-  [[ $output == *"TOTAL: 6 finding(s) against v9.9.9"* ]]
+  [[ $output == *"TOTAL: 11 finding(s) against v9.9.9"* ]]
 }
 
 @test "an explicit version tolerates a leading v" {
