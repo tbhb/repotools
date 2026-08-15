@@ -89,11 +89,16 @@ jobs:
           version: 2026.8.3
           install_args: apm
 
-      - name: Validate primitives
-        run: apm compile --validate
-
+      # The frozen install comes first because the root manifest carries
+      # no primitives of its own anymore: validation reads the staged
+      # dependencies under apm_modules/, so without an install it finds
+      # no APM content and fails. Validate mode writes nothing, which is
+      # what keeps the drift check below meaningful.
       - name: Run frozen install
         run: apm install --frozen
+
+      - name: Validate primitives
+        run: apm compile --validate
 
       - name: Audit deployed state
         run: apm audit --ci
