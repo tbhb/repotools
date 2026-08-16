@@ -1,5 +1,5 @@
 lockfile_version: '1'
-generated_at: '2026-08-16T08:29:30.243101+00:00'
+generated_at: '2026-08-16T20:05:05.370190+00:00'
 apm_version: 0.28.0
 dependencies:
 - repo_url: _local/agy
@@ -199,6 +199,163 @@ dependencies:
   name: repotools-agents-codex
   version: 0.8.0
   package_type: apm_package
+  deployed_files:
+  - .agents/skills/codex-analyze-session
+  - .agents/skills/codex-analyze-session/SKILL.md
+  - .agents/skills/codex-analyze-session/references/FIX_SURFACES.md
+  - .agents/skills/codex-analyze-session/references/LOCATE_SESSION.md
+  - .agents/skills/codex-analyze-session/references/SESSION_CLI.md
+  - .agents/skills/codex-analyze-session/references/VERIFY_FIGURES.md
+  - .agents/skills/codex-analyze-session/references/WRITING_THE_RETRO.md
+  - .agents/skills/codex-analyze-session/scripts/new-retro.sh
+  - .agents/skills/codex-analyze-session/scripts/preflight.sh
+  - .agents/skills/codex-analyze-session/scripts/session.py
+  - .agents/skills/codex-analyze-session/templates/RETRO.md
+  - .agents/skills/codex-analyze-session/tokens.json
+  - .agents/skills/codex-commit
+  - .agents/skills/codex-commit/SKILL.md
+  - .agents/skills/codex-commit/scripts/commit.sh
+  - .agents/skills/codex-commit/scripts/preflight.sh
+  - .agents/skills/codex-commit/scripts/stamp-review.sh
+  - .agents/skills/codex-commit/tokens.json
+  - .agents/skills/codex-fix-pr
+  - .agents/skills/codex-fix-pr/SKILL.md
+  - .agents/skills/codex-fix-pr/scripts/diagnose.sh
+  - .agents/skills/codex-fix-pr/scripts/populate-description.sh
+  - .agents/skills/codex-fix-pr/tokens.json
+  - .agents/skills/codex-fix-prose
+  - .agents/skills/codex-fix-prose/SKILL.md
+  - .agents/skills/codex-fix-prose/scripts/check-suppressions.sh
+  - .agents/skills/codex-fix-prose/scripts/preflight.sh
+  - .agents/skills/codex-fix-prose/tokens.json
+  - .agents/skills/codex-merge-pr
+  - .agents/skills/codex-merge-pr/SKILL.md
+  - .agents/skills/codex-merge-pr/scripts/populate-description.sh
+  - .agents/skills/codex-merge-pr/scripts/preflight.sh
+  - .agents/skills/codex-merge-pr/scripts/squash-merge.sh
+  - .agents/skills/codex-merge-pr/scripts/squash-message.sh
+  - .agents/skills/codex-merge-pr/scripts/stamp-review.sh
+  - .agents/skills/codex-merge-pr/tokens.json
+  - .agents/skills/codex-pr
+  - .agents/skills/codex-pr/SKILL.md
+  - .agents/skills/codex-pr/scripts/create-pr.sh
+  - .agents/skills/codex-pr/scripts/preflight.sh
+  - .agents/skills/codex-pr/scripts/record-review.sh
+  - .agents/skills/codex-pr/scripts/scaffold-description.sh
+  - .agents/skills/codex-pr/scripts/validate-description.sh
+  - .agents/skills/codex-pr/tokens.json
+  - .agents/skills/codex-rebase
+  - .agents/skills/codex-rebase/SKILL.md
+  - .agents/skills/codex-rebase/scripts/continue-rebase.sh
+  - .agents/skills/codex-rebase/scripts/marker-scan.sh
+  - .agents/skills/codex-rebase/scripts/preflight.sh
+  - .agents/skills/codex-rebase/scripts/rebase-status.sh
+  - .agents/skills/codex-rebase/scripts/start-rebase.sh
+  - .agents/skills/codex-rebase/scripts/verify-rebase.sh
+  - .agents/skills/codex-rebase/tokens.json
+  - .agents/skills/codex-resolve-rebase-conflicts
+  - .agents/skills/codex-resolve-rebase-conflicts/SKILL.md
+  - .agents/skills/codex-resolve-rebase-conflicts/scripts/classify-conflicts.sh
+  - .agents/skills/codex-resolve-rebase-conflicts/scripts/conflict_shape.py
+  - .agents/skills/codex-resolve-rebase-conflicts/scripts/resolve-union.sh
+  - .agents/skills/codex-resolve-rebase-conflicts/scripts/take-side.sh
+  - .agents/skills/codex-resolve-rebase-conflicts/tokens.json
+  - .agents/skills/codex-review-commit-message
+  - .agents/skills/codex-review-commit-message/SKILL.md
+  - .agents/skills/codex-review-commit-message/tokens.json
+  - .agents/skills/codex-review-pr-description
+  - .agents/skills/codex-review-pr-description/SKILL.md
+  - .agents/skills/codex-review-pr-description/tokens.json
+  - .agents/skills/codex-review-prose-fix
+  - .agents/skills/codex-review-prose-fix/SKILL.md
+  - .agents/skills/codex-review-prose-fix/tokens.json
+  - .agents/skills/codex-review-squash-message
+  - .agents/skills/codex-review-squash-message/SKILL.md
+  - .agents/skills/codex-review-squash-message/scripts/context.sh
+  - .agents/skills/codex-review-squash-message/tokens.json
+  - .agents/skills/codex-watch-pr
+  - .agents/skills/codex-watch-pr/SKILL.md
+  - .agents/skills/codex-watch-pr/scripts/watch-checks.sh
+  - .agents/skills/codex-watch-pr/tokens.json
+  - .agents/skills/codex-write-pr-description
+  - .agents/skills/codex-write-pr-description/SKILL.md
+  - .agents/skills/codex-write-pr-description/scripts/context.sh
+  - .agents/skills/codex-write-pr-description/tokens.json
+  - .agents/skills/codex-write-prose-fix
+  - .agents/skills/codex-write-prose-fix/SKILL.md
+  - .agents/skills/codex-write-prose-fix/scripts/context.sh
+  - .agents/skills/codex-write-prose-fix/tokens.json
+  deployed_file_hashes:
+    .agents/skills/codex-analyze-session/SKILL.md: sha256:60fb925f0bf1ec61707e769856f78febe5aba6d9b554398d96dd5341a0fa321d
+    .agents/skills/codex-analyze-session/references/FIX_SURFACES.md: sha256:e66be34a0d93118803ec0c16947471610de0b46af1b15a76affd2925eae2060c
+    .agents/skills/codex-analyze-session/references/LOCATE_SESSION.md: sha256:7e9928e662b440ba7c9e2851f297e8e0fc2ad86224f3d8aacb0d9872fbdb73c6
+    .agents/skills/codex-analyze-session/references/SESSION_CLI.md: sha256:77160d043e8e958deb99f2e0f963bdf15b69edb7c6a8635a5464114a3b740715
+    .agents/skills/codex-analyze-session/references/VERIFY_FIGURES.md: sha256:28c360f73b85cae8d8751ab7a725a20532612d6056144d9e6772f50431ae375f
+    .agents/skills/codex-analyze-session/references/WRITING_THE_RETRO.md: sha256:6b40ccc7b76da3522ad2ddff7ef2f229da24e197906a0df3191b9320a672f999
+    .agents/skills/codex-analyze-session/scripts/new-retro.sh: sha256:be65ccd005227b92b305abe2ace122f7b9bc94d406f948507ec16489c7514bc8
+    .agents/skills/codex-analyze-session/scripts/preflight.sh: sha256:f3cbb324db593816e9956cf595937bbc459ca3c8551159c909d31b8cd93b116c
+    .agents/skills/codex-analyze-session/scripts/session.py: sha256:3ca7831c2e8927d63ccb551717f910973a103afdc64b81a43279db831cf196ac
+    .agents/skills/codex-analyze-session/templates/RETRO.md: sha256:e65ceac0ec839e63669cab8dea671530de5d521dd568e5380d602f4e4ce03b93
+    .agents/skills/codex-analyze-session/tokens.json: sha256:91bdae78109136af25d4278be222229f0c5defaf60e684fbe12de9fa1001c042
+    .agents/skills/codex-commit/SKILL.md: sha256:0a90b7b3b335fce89a05f42405ba92a2e6c01fe40c38c38f4b6cf910c1aee802
+    .agents/skills/codex-commit/scripts/commit.sh: sha256:978a18393c2c41e2c06e9a72d2433ed01f23ac90e6b9a3393b263d78bd17f4c5
+    .agents/skills/codex-commit/scripts/preflight.sh: sha256:f247d5b1debef0d0ec127a58666a3f520de555482a9fca05b172fcf38e008f03
+    .agents/skills/codex-commit/scripts/stamp-review.sh: sha256:daf2f7bc481d11f8339ae29db92b00529a1a4c27b6da417687cac0b985ae88a2
+    .agents/skills/codex-commit/tokens.json: sha256:ea64a4fe9c7f464c32a0dd1461284b53c52aed1b5e1dcedd8f509b8932843e26
+    .agents/skills/codex-fix-pr/SKILL.md: sha256:f58e65eb600c537c77c4545cafb31b9164df2f1c21f365c7ec8eaa2aeb7739ef
+    .agents/skills/codex-fix-pr/scripts/diagnose.sh: sha256:54ed5032569419c9a49677822ce89cc253677fe4eee0b2334fc0fe1825cc1af8
+    .agents/skills/codex-fix-pr/scripts/populate-description.sh: sha256:ed9688d83433ff7e1700255ae02e3dc912faf34dc34bdd9edb22eb02b8032d3a
+    .agents/skills/codex-fix-pr/tokens.json: sha256:70e9217ae2ed8c2b6d83298152da91e44706e46165ff9dbc0ceb196489d4f270
+    .agents/skills/codex-fix-prose/SKILL.md: sha256:7cf3ebd9c6b75b20e7e933bd1c2ddf1d72b8a5bf4911c56f2b25ddc56c9f54c2
+    .agents/skills/codex-fix-prose/scripts/check-suppressions.sh: sha256:950b610fd4822d2241d15f014c1e712b21d8ec961b72f756bc37913605c409e6
+    .agents/skills/codex-fix-prose/scripts/preflight.sh: sha256:42898c31535e0da5939e856b2355f7d66a48b03f114ab5924d2abc428c65b9da
+    .agents/skills/codex-fix-prose/tokens.json: sha256:844eb86f61a968b1afade1f7750fd688afe314023edf8f62f609123a4f37f938
+    .agents/skills/codex-merge-pr/SKILL.md: sha256:af36a85cd85d5daf66bfe7bf2800b6e9f2c5d56c0c91a06c6b8aecf42d5ea6d8
+    .agents/skills/codex-merge-pr/scripts/populate-description.sh: sha256:ed9688d83433ff7e1700255ae02e3dc912faf34dc34bdd9edb22eb02b8032d3a
+    .agents/skills/codex-merge-pr/scripts/preflight.sh: sha256:39cbfb653edbb106f6a8f2e9f63c2e61e5ec52ce51cfab9a5d87c3c6c0ae736d
+    .agents/skills/codex-merge-pr/scripts/squash-merge.sh: sha256:3943556eacb3b790d7e83fb30d6589b1d413397fd2cc2688ebb55179d85f9011
+    .agents/skills/codex-merge-pr/scripts/squash-message.sh: sha256:f611aefdba89ebce52f6e4683b4c087742d271e009d5386f75b284e7b1d4915d
+    .agents/skills/codex-merge-pr/scripts/stamp-review.sh: sha256:f11919448af7f892e300e97ebca968f9e97808330bb44d99ae0cc92e7ba0d50c
+    .agents/skills/codex-merge-pr/tokens.json: sha256:1e7d57e0f657570426f7b7c13761cceaf1b5aee70c2d9a06baad996caa8282f7
+    .agents/skills/codex-pr/SKILL.md: sha256:9ec84b28b6a36ef52b4dc5122be84229a522a3c6bbfec6fadbca87bb1a84b820
+    .agents/skills/codex-pr/scripts/create-pr.sh: sha256:1a4d6e68b5bf562f0876a34d3ccb69b74e0bc848dc42058ee46683d7bba389fe
+    .agents/skills/codex-pr/scripts/preflight.sh: sha256:3ce306acc9ee1a7a5bc136749d60e1b9cad742484fd52ae2ce59b6b4f91b0ac9
+    .agents/skills/codex-pr/scripts/record-review.sh: sha256:a9c02aa03dc44e7303b5fbe7e69e952bacb95ac36d53e56d9adcdff9fb2893a2
+    .agents/skills/codex-pr/scripts/scaffold-description.sh: sha256:e8a7e913e21a56f29851e614033dcbff888cc7863e70446f2ce8dfc3fe77dedb
+    .agents/skills/codex-pr/scripts/validate-description.sh: sha256:06798be90499be5695209f93076bc8bf6ce1fb4c8145dbd3f85c951488be2575
+    .agents/skills/codex-pr/tokens.json: sha256:9faf9738901ccce0fd3dabab289a18c5e018e8a972c3b139809464ec24efc5a8
+    .agents/skills/codex-rebase/SKILL.md: sha256:b22de6ce06cb28169b92ea56d86a435591d0fc4c0a386e82e715f687c6735ecc
+    .agents/skills/codex-rebase/scripts/continue-rebase.sh: sha256:477257bf592accf2c4bbf3c67ba8f48a1738cca6e2b9f806fe38a082d38f9554
+    .agents/skills/codex-rebase/scripts/marker-scan.sh: sha256:c3ac87dd0352a8bdbd70f05c4febd7d11b5cc0e2576c30d896003360e7f268df
+    .agents/skills/codex-rebase/scripts/preflight.sh: sha256:00f2be2c4ad78ae44f501273e4df1a160dc169c5140ce9455f287df5b2b3ffb9
+    .agents/skills/codex-rebase/scripts/rebase-status.sh: sha256:f1c9da43d61decd4e1dc6c321efa71e03548c1455acfd70d1437e06b1ab68d8f
+    .agents/skills/codex-rebase/scripts/start-rebase.sh: sha256:42f56f78d535f599103d20ba2e8462163bdc5973903101318e7a7ffe75ad9496
+    .agents/skills/codex-rebase/scripts/verify-rebase.sh: sha256:2c509fb84aa88aec261473df5396bfcb7b017b6480643eebadd6cafe91b2b88d
+    .agents/skills/codex-rebase/tokens.json: sha256:0772d8d641a8ebf89652ac791055e34c9d4431e51169c5adcac579e0540841b8
+    .agents/skills/codex-resolve-rebase-conflicts/SKILL.md: sha256:5964998a623890a6a350bb640255b5febc431831e6b5fa5f499f375cd6b46ae6
+    .agents/skills/codex-resolve-rebase-conflicts/scripts/classify-conflicts.sh: sha256:78300f099cba926c97cc224e37bf8a9e8846722115378b9fb0001009605a7588
+    .agents/skills/codex-resolve-rebase-conflicts/scripts/conflict_shape.py: sha256:cc2b87c5b9d7de560bda3a5b6be623b8fbd35c35f4c9dac19e13af694dc3dd29
+    .agents/skills/codex-resolve-rebase-conflicts/scripts/resolve-union.sh: sha256:3c9b29d25e24d891b71bade29d14dfbc11d5d0f2243fa4d44db2a52a8e2d9c32
+    .agents/skills/codex-resolve-rebase-conflicts/scripts/take-side.sh: sha256:93f47713021834b6f5b138c42f48e26c40e41ed760a06a4a268787d25ce3a092
+    .agents/skills/codex-resolve-rebase-conflicts/tokens.json: sha256:faa276fc36f5e6e60500f518bf1327bc20e4243619a3f270eb9ea442bbf5b56a
+    .agents/skills/codex-review-commit-message/SKILL.md: sha256:a08f61c97226a510cce3d3922321df3b0fed6f4ec8ec11e354e4b0e6ab89731a
+    .agents/skills/codex-review-commit-message/tokens.json: sha256:768f15901db529681539fe9a213ed7f255fc26c1dc485de18f33b925e46a60cd
+    .agents/skills/codex-review-pr-description/SKILL.md: sha256:b04d91d138bc23af8b9804bde19b30eeb666495afa9897dd626f08f86a9dc73a
+    .agents/skills/codex-review-pr-description/tokens.json: sha256:8b3f2ef6ec314b5d9f5f6bd9011f2663286548ca99b9bbda4c521a384e83debf
+    .agents/skills/codex-review-prose-fix/SKILL.md: sha256:318b98bc5e74076926bb910a91f431784a11b98a74004bccaf9bd95e3105856f
+    .agents/skills/codex-review-prose-fix/tokens.json: sha256:394011ce303b7ae3984450484e36f06e361b2cf547031132713012ebeec066fb
+    .agents/skills/codex-review-squash-message/SKILL.md: sha256:b05abf031ea49a986adce18672d76cc4af8299d65e8f42ae62bbb598daa60db9
+    .agents/skills/codex-review-squash-message/scripts/context.sh: sha256:a58b83173e9183eaab70784df2981acfd8ae3755570e6c01abc95b10f63d91db
+    .agents/skills/codex-review-squash-message/tokens.json: sha256:f327890b59d13d812bf1878150337c08eee2489c67118c2e85477236932e6fd6
+    .agents/skills/codex-watch-pr/SKILL.md: sha256:f5e9b9ea7907a94e7d9ce8276fefab901e365059e2f147683cd6c1ea31ac2b0b
+    .agents/skills/codex-watch-pr/scripts/watch-checks.sh: sha256:a72b832a3a9d7e9924dbbacc07c3df48bce470489978e4b447fb967b4c31b2f2
+    .agents/skills/codex-watch-pr/tokens.json: sha256:6e804c48cbf068210246b972bf5da9c3801fe040ef9e040ff00ce3251ff4ea4f
+    .agents/skills/codex-write-pr-description/SKILL.md: sha256:cbe5f1b3ffbae3efba84d9a5c261f494847dbf0ac599e418b8bdf211bf635456
+    .agents/skills/codex-write-pr-description/scripts/context.sh: sha256:8f2963be66de209a31573696847645f7252028a5648ed2b0f97a71cc39ff72d6
+    .agents/skills/codex-write-pr-description/tokens.json: sha256:0947f7bcf6c8c7ca7e5ec0bb39a8896cf02b1b8a90df5c84e0eb1e0173df4aaa
+    .agents/skills/codex-write-prose-fix/SKILL.md: sha256:b693cf7d6fe7ad6d1e30fc8d97665da4379a7f56d49f5798db78b956bec9a945
+    .agents/skills/codex-write-prose-fix/scripts/context.sh: sha256:e570195e0affaf50d758828f3211af3902ce99730b405667f68e5ad6d96e8ff2
+    .agents/skills/codex-write-prose-fix/tokens.json: sha256:dcf9101da6c9de0e81448c2a9d87332fb3f024f1b7c3a77a7c7702a7042ab8d3
   source: local
   local_path: ./packages/agents/codex
   declared_license: Apache-2.0
@@ -225,6 +382,771 @@ deployments:
   - ./packages/agents/common
   active_owner: ./packages/agents/common
   content_hash: sha256:fa0704a13130bddb8b86b7ce1a4957e1b1afd5cea004c91d55bd3e9c3bd8b993
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:60fb925f0bf1ec61707e769856f78febe5aba6d9b554398d96dd5341a0fa321d
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/references/FIX_SURFACES.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:e66be34a0d93118803ec0c16947471610de0b46af1b15a76affd2925eae2060c
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/references/LOCATE_SESSION.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:7e9928e662b440ba7c9e2851f297e8e0fc2ad86224f3d8aacb0d9872fbdb73c6
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/references/SESSION_CLI.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:77160d043e8e958deb99f2e0f963bdf15b69edb7c6a8635a5464114a3b740715
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/references/VERIFY_FIGURES.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:28c360f73b85cae8d8751ab7a725a20532612d6056144d9e6772f50431ae375f
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/references/WRITING_THE_RETRO.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:6b40ccc7b76da3522ad2ddff7ef2f229da24e197906a0df3191b9320a672f999
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/scripts/new-retro.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:be65ccd005227b92b305abe2ace122f7b9bc94d406f948507ec16489c7514bc8
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/scripts/preflight.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:f3cbb324db593816e9956cf595937bbc459ca3c8551159c909d31b8cd93b116c
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/scripts/session.py
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:3ca7831c2e8927d63ccb551717f910973a103afdc64b81a43279db831cf196ac
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/templates/RETRO.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:e65ceac0ec839e63669cab8dea671530de5d521dd568e5380d602f4e4ce03b93
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-analyze-session/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:91bdae78109136af25d4278be222229f0c5defaf60e684fbe12de9fa1001c042
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-commit
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-commit/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:0a90b7b3b335fce89a05f42405ba92a2e6c01fe40c38c38f4b6cf910c1aee802
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-commit/scripts/commit.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:978a18393c2c41e2c06e9a72d2433ed01f23ac90e6b9a3393b263d78bd17f4c5
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-commit/scripts/preflight.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:f247d5b1debef0d0ec127a58666a3f520de555482a9fca05b172fcf38e008f03
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-commit/scripts/stamp-review.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:daf2f7bc481d11f8339ae29db92b00529a1a4c27b6da417687cac0b985ae88a2
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-commit/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:ea64a4fe9c7f464c32a0dd1461284b53c52aed1b5e1dcedd8f509b8932843e26
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-fix-pr
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-fix-pr/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:f58e65eb600c537c77c4545cafb31b9164df2f1c21f365c7ec8eaa2aeb7739ef
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-fix-pr/scripts/diagnose.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:54ed5032569419c9a49677822ce89cc253677fe4eee0b2334fc0fe1825cc1af8
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-fix-pr/scripts/populate-description.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:ed9688d83433ff7e1700255ae02e3dc912faf34dc34bdd9edb22eb02b8032d3a
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-fix-pr/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:70e9217ae2ed8c2b6d83298152da91e44706e46165ff9dbc0ceb196489d4f270
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-fix-prose
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-fix-prose/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:7cf3ebd9c6b75b20e7e933bd1c2ddf1d72b8a5bf4911c56f2b25ddc56c9f54c2
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-fix-prose/scripts/check-suppressions.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:950b610fd4822d2241d15f014c1e712b21d8ec961b72f756bc37913605c409e6
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-fix-prose/scripts/preflight.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:42898c31535e0da5939e856b2355f7d66a48b03f114ab5924d2abc428c65b9da
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-fix-prose/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:844eb86f61a968b1afade1f7750fd688afe314023edf8f62f609123a4f37f938
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-merge-pr
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-merge-pr/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:af36a85cd85d5daf66bfe7bf2800b6e9f2c5d56c0c91a06c6b8aecf42d5ea6d8
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-merge-pr/scripts/populate-description.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:ed9688d83433ff7e1700255ae02e3dc912faf34dc34bdd9edb22eb02b8032d3a
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-merge-pr/scripts/preflight.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:39cbfb653edbb106f6a8f2e9f63c2e61e5ec52ce51cfab9a5d87c3c6c0ae736d
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-merge-pr/scripts/squash-merge.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:3943556eacb3b790d7e83fb30d6589b1d413397fd2cc2688ebb55179d85f9011
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-merge-pr/scripts/squash-message.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:f611aefdba89ebce52f6e4683b4c087742d271e009d5386f75b284e7b1d4915d
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-merge-pr/scripts/stamp-review.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:f11919448af7f892e300e97ebca968f9e97808330bb44d99ae0cc92e7ba0d50c
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-merge-pr/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:1e7d57e0f657570426f7b7c13761cceaf1b5aee70c2d9a06baad996caa8282f7
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-pr
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-pr/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:9ec84b28b6a36ef52b4dc5122be84229a522a3c6bbfec6fadbca87bb1a84b820
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-pr/scripts/create-pr.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:1a4d6e68b5bf562f0876a34d3ccb69b74e0bc848dc42058ee46683d7bba389fe
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-pr/scripts/preflight.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:3ce306acc9ee1a7a5bc136749d60e1b9cad742484fd52ae2ce59b6b4f91b0ac9
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-pr/scripts/record-review.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:a9c02aa03dc44e7303b5fbe7e69e952bacb95ac36d53e56d9adcdff9fb2893a2
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-pr/scripts/scaffold-description.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:e8a7e913e21a56f29851e614033dcbff888cc7863e70446f2ce8dfc3fe77dedb
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-pr/scripts/validate-description.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:06798be90499be5695209f93076bc8bf6ce1fb4c8145dbd3f85c951488be2575
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-pr/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:9faf9738901ccce0fd3dabab289a18c5e018e8a972c3b139809464ec24efc5a8
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-rebase
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-rebase/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:b22de6ce06cb28169b92ea56d86a435591d0fc4c0a386e82e715f687c6735ecc
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-rebase/scripts/continue-rebase.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:477257bf592accf2c4bbf3c67ba8f48a1738cca6e2b9f806fe38a082d38f9554
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-rebase/scripts/marker-scan.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:c3ac87dd0352a8bdbd70f05c4febd7d11b5cc0e2576c30d896003360e7f268df
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-rebase/scripts/preflight.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:00f2be2c4ad78ae44f501273e4df1a160dc169c5140ce9455f287df5b2b3ffb9
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-rebase/scripts/rebase-status.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:f1c9da43d61decd4e1dc6c321efa71e03548c1455acfd70d1437e06b1ab68d8f
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-rebase/scripts/start-rebase.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:42f56f78d535f599103d20ba2e8462163bdc5973903101318e7a7ffe75ad9496
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-rebase/scripts/verify-rebase.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:2c509fb84aa88aec261473df5396bfcb7b017b6480643eebadd6cafe91b2b88d
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-rebase/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:0772d8d641a8ebf89652ac791055e34c9d4431e51169c5adcac579e0540841b8
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-resolve-rebase-conflicts
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-resolve-rebase-conflicts/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:5964998a623890a6a350bb640255b5febc431831e6b5fa5f499f375cd6b46ae6
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-resolve-rebase-conflicts/scripts/classify-conflicts.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:78300f099cba926c97cc224e37bf8a9e8846722115378b9fb0001009605a7588
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-resolve-rebase-conflicts/scripts/conflict_shape.py
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:cc2b87c5b9d7de560bda3a5b6be623b8fbd35c35f4c9dac19e13af694dc3dd29
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-resolve-rebase-conflicts/scripts/resolve-union.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:3c9b29d25e24d891b71bade29d14dfbc11d5d0f2243fa4d44db2a52a8e2d9c32
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-resolve-rebase-conflicts/scripts/take-side.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:93f47713021834b6f5b138c42f48e26c40e41ed760a06a4a268787d25ce3a092
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-resolve-rebase-conflicts/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:faa276fc36f5e6e60500f518bf1327bc20e4243619a3f270eb9ea442bbf5b56a
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-commit-message
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-commit-message/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:a08f61c97226a510cce3d3922321df3b0fed6f4ec8ec11e354e4b0e6ab89731a
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-commit-message/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:768f15901db529681539fe9a213ed7f255fc26c1dc485de18f33b925e46a60cd
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-pr-description
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-pr-description/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:b04d91d138bc23af8b9804bde19b30eeb666495afa9897dd626f08f86a9dc73a
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-pr-description/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:8b3f2ef6ec314b5d9f5f6bd9011f2663286548ca99b9bbda4c521a384e83debf
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-prose-fix
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-prose-fix/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:318b98bc5e74076926bb910a91f431784a11b98a74004bccaf9bd95e3105856f
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-prose-fix/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:394011ce303b7ae3984450484e36f06e361b2cf547031132713012ebeec066fb
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-squash-message
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-squash-message/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:b05abf031ea49a986adce18672d76cc4af8299d65e8f42ae62bbb598daa60db9
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-squash-message/scripts/context.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:a58b83173e9183eaab70784df2981acfd8ae3755570e6c01abc95b10f63d91db
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-review-squash-message/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:f327890b59d13d812bf1878150337c08eee2489c67118c2e85477236932e6fd6
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-watch-pr
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-watch-pr/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:f5e9b9ea7907a94e7d9ce8276fefab901e365059e2f147683cd6c1ea31ac2b0b
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-watch-pr/scripts/watch-checks.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:a72b832a3a9d7e9924dbbacc07c3df48bce470489978e4b447fb967b4c31b2f2
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-watch-pr/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:6e804c48cbf068210246b972bf5da9c3801fe040ef9e040ff00ce3251ff4ea4f
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-write-pr-description
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-write-pr-description/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:cbe5f1b3ffbae3efba84d9a5c261f494847dbf0ac599e418b8bdf211bf635456
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-write-pr-description/scripts/context.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:8f2963be66de209a31573696847645f7252028a5648ed2b0f97a71cc39ff72d6
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-write-pr-description/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:0947f7bcf6c8c7ca7e5ec0bb39a8896cf02b1b8a90df5c84e0eb1e0173df4aaa
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-write-prose-fix
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: null
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-write-prose-fix/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:b693cf7d6fe7ad6d1e30fc8d97665da4379a7f56d49f5798db78b956bec9a945
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-write-prose-fix/scripts/context.sh
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:e570195e0affaf50d758828f3211af3902ce99730b405667f68e5ad6d96e8ff2
+- kind: project-relative
+  target: antigravity
+  value: .agents/skills/codex-write-prose-fix/tokens.json
+  runtime: null
+  scope: project
+  owners:
+  - ./packages/agents/codex
+  active_owner: ./packages/agents/codex
+  content_hash: sha256:dcf9101da6c9de0e81448c2a9d87332fb3f024f1b7c3a77a7c7702a7042ab8d3
 - kind: project-relative
   target: claude
   value: .claude/rules/worktree-wip.md

@@ -30,6 +30,16 @@ EOF
   [ "$status" -eq 0 ]
 }
 
+@test "accepts the Codex GPT model identity" {
+  run "$SCRIPT" <<'EOF'
+test: exercise codex attribution
+
+Assisted-by: codex:gpt-5.6-sol
+Signed-off-by: Test User <test@example.com>
+EOF
+  [ "$status" -eq 0 ]
+}
+
 @test "accepts an Assisted-by value with trailing tool names" {
   run "$SCRIPT" <<'EOF'
 feat: a change

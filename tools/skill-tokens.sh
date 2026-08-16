@@ -9,15 +9,12 @@
 # until something reads it. Measuring them together hides that split,
 # so this reports each separately.
 #
-# Counts come from the real tokenizer through the ant CLI rather than
-# from a characters-per-token guess. Claude Opus 4.7 and later use a
-# tokenizer that yields roughly 30 percent more tokens than earlier
-# models for the same text, which puts any remembered estimate well out
-# of date.
+# Counts come from each harness's tokenizer rather than from a
+# characters-per-token guess. Claude skills use the Anthropic API through
+# ant. Codex skills use OpenAI's tiktoken locally, so they need no API key.
 #
-# Each request carries a fixed envelope of its own. A baseline call
-# measures it once, and every figure below has it subtracted, so what
-# lands in the JSON is the text alone.
+# Each Anthropic request carries a fixed envelope of its own. A baseline
+# call measures it once and subtracts it. tiktoken counts the text directly.
 #
 # The body budget is the platform's own guidance: keep the SKILL.md body
 # under 5k tokens and push reference material into bundled files, which
@@ -28,7 +25,9 @@
 #
 # Usage: skill-tokens.sh [skill-dir ...]
 #        (default: packages/agents/*/.apm/skills/*/)
-# Env:   MODEL to count against another model.
+# Env:   CLAUDE_MODEL or MODEL to count Claude skills against another model.
+#        CODEX_MODEL to label Codex counts for another model.
+#        CODEX_ENCODING to select its tiktoken encoding.
 #        BODY_BUDGET to move the warning threshold.
 set -euo pipefail
 
@@ -44,16 +43,13 @@ IFS=$' \t\n'
 
 readonly BODY_BUDGET=${BODY_BUDGET:-5000}
 
-MODEL=${MODEL:-claude-opus-5}
-export MODEL
+CLAUDE_MODEL=${CLAUDE_MODEL:-${MODEL:-claude-opus-5}}
+CODEX_MODEL=${CODEX_MODEL:-gpt-5.6-sol}
+CODEX_ENCODING=${CODEX_ENCODING:-o200k_base}
+export CLAUDE_MODEL CODEX_MODEL CODEX_ENCODING
 
 root=$(git rev-parse --show-toplevel)
 cd "$root"
-
-command -v ant >/dev/null 2>&1 || {
-  printf 'skill-tokens: ant is not installed. See the Claude Developer Platform CLI.\n' >&2
-  exit 1
-}
 
 # One scratch area for the whole run, cleaned once. The loop below used
 # to set and clear its own trap per skill, which would have dropped this
@@ -70,10 +66,14 @@ request="$scratch/request.yaml"
 # ant decides at startup whether stdin carries a request, and a producer
 # slower to start than ant loses that race: ant sees an empty pipe,
 # concludes nothing was piped, and asks for the flags instead.
-count() {
+count_claude() {
+  command -v ant >/dev/null 2>&1 || {
+    printf 'skill-tokens: ant is required for Claude skills. See the Claude Developer Platform CLI.\n' >&2
+    exit 1
+  }
   python3 -c '
 import os, sys
-print("model: " + os.environ["MODEL"])
+print("model: " + os.environ["CLAUDE_MODEL"])
 print("messages:")
 print("  - role: user")
 print("    content: |")
@@ -82,6 +82,14 @@ for line in sys.stdin.read().split("\n"):
 ' >"$request"
   ant messages count-tokens <"$request" 2>/dev/null |
     python3 -c 'import json,sys; print(json.load(sys.stdin)["input_tokens"])'
+}
+
+count_codex() {
+  uv run --quiet --with 'tiktoken==0.13.0' python -c '
+import sys, tiktoken
+encoding = tiktoken.get_encoding(sys.argv[1])
+print(len(encoding.encode(sys.stdin.read())))
+' "$CODEX_ENCODING"
 }
 
 # net and the callers below do arithmetic on what count prints, and an
@@ -97,18 +105,29 @@ require_count() {
 }
 
 # The envelope every request pays, measured with a one-token payload.
-baseline=$(printf 'x' | count) || {
-  printf 'skill-tokens: the ant call failed. Check what ant auth status reports.\n' >&2
-  exit 1
+claude_baseline=""
+
+prepare_backend() {
+  if [ "$TOKEN_BACKEND" != claude ] || [ -n "$claude_baseline" ]; then
+    return
+  fi
+  claude_baseline=$(printf 'x' | count_claude) || {
+    printf 'skill-tokens: the ant call failed. Check what ant auth status reports.\n' >&2
+    exit 1
+  }
+  claude_baseline=$((claude_baseline - 1))
+  printf 'model %s, request envelope %s tokens\n\n' "$CLAUDE_MODEL" "$claude_baseline"
 }
-baseline=$((baseline - 1))
-printf 'model %s, request envelope %s tokens\n\n' "$MODEL" "$baseline"
 
 # net prints the token count of a file with the envelope removed.
 net() {
   local raw
-  raw=$(count <"$1")
-  printf '%s\n' "$((raw - baseline))"
+  if [ "$TOKEN_BACKEND" = codex ]; then
+    count_codex <"$1"
+    return
+  fi
+  raw=$(count_claude <"$1")
+  printf '%s\n' "$((raw - claude_baseline))"
 }
 
 budget_exceeded=0
@@ -125,6 +144,19 @@ for dir in "${dirs[@]}"; do
     printf 'skip %s: no SKILL.md\n' "$dir" >&2
     continue
   }
+  case $dir in
+  packages/agents/codex/* | */packages/agents/codex/* | .agents/skills/codex-* | */.agents/skills/codex-*)
+    TOKEN_BACKEND=codex
+    MODEL=$CODEX_MODEL
+    TOKENIZER=$CODEX_ENCODING
+    ;;
+  *)
+    TOKEN_BACKEND=claude
+    MODEL=$CLAUDE_MODEL
+    TOKENIZER=""
+    ;;
+  esac
+  prepare_backend
 
   # Split the manifest so the always-loaded part can be told apart from
   # the part that loads on invocation.
@@ -183,7 +215,7 @@ PY
 $(command git -c core.quotePath=false ls-files --cached --others --exclude-standard -- "$dir" | sort)
 EOF
 
-  MODEL="$MODEL" SKILL="$skill" SKILL_DIR="$dir" TOTAL="$total" FM="$fm" DESC="$desc" BODY="$body" \
+  MODEL="$MODEL" TOKENIZER="$TOKENIZER" SKILL="$skill" SKILL_DIR="$dir" TOTAL="$total" FM="$fm" DESC="$desc" BODY="$body" \
     BUNDLED="$bundled" MANIFEST_BYTES="$(wc -c <"$manifest" | tr -d ' ')" \
     python3 - "$dir/tokens.json" <<'PY'
 import json, os, sys
@@ -220,6 +252,8 @@ doc = {
     "bundled_files": rows,
     "bundled_files_tokens": sum(r["tokens"] for r in rows),
 }
+if os.environ["TOKENIZER"]:
+    doc["tokenizer"] = os.environ["TOKENIZER"]
 with open(sys.argv[1], "w") as fh:
     json.dump(doc, fh, indent=2, sort_keys=True)
     fh.write("\n")
