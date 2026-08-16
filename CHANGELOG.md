@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file. See [conven
 - - -
 <!-- release -->
 
+## [v0.8.0](https://github.com/tbhb/repotools/compare/54de242307a5745ee1e6efad2f2157943a40a917..v0.8.0) - 2026-08-15
+
+### Bug Fixes
+
+- (**tooling**) stop lint-types failing on a worktree's empty view (#54) - ([ef15c6c](https://github.com/tbhb/repotools/commit/ef15c6c24a56bc16ba00cbd65c63ac4fe7c819c9)) - [@tbhb](https://github.com/tbhb)
+
+### Build system
+
+- (**apm**) split the package into per-harness sub-packages (#55) - ([7de08d2](https://github.com/tbhb/repotools/commit/7de08d24ce048eb6aac71a12ce800e9f550d0620)) - [@tbhb](https://github.com/tbhb)
+
+- - -
+
+<!-- release -->
+
 ## [v0.7.1](https://github.com/tbhb/repotools/compare/3b1d0a77791684a5ab64170acaba5132c63550b7..v0.7.1) - 2026-08-15
 
 ### Bug Fixes
