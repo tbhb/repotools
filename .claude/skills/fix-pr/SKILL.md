@@ -25,9 +25,9 @@ A guard hook runs alongside. It refuses a log sweep that goes around the diagnos
 
 `$ARGUMENTS` names the pull request number when the caller knows it. An empty value means whatever is open for the current branch.
 
-## Step 0: open the task list
+## Step 0: the checklist
 
-Create these with `TaskCreate`, then move each through `in_progress` and `completed`.
+Track these steps with the session's task-list tools where it carries them. Newer harnesses leave those tools out by default, and a session without them works the list in order as written.
 
 1. Diagnose the failures
 2. Reproduce each one locally

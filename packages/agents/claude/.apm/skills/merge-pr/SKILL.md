@@ -30,9 +30,9 @@ Left alone, GitHub writes the squash message by concatenating every commit on th
 
 !`bash ${CLAUDE_SKILL_DIR}/scripts/preflight.sh ${ARGUMENTS}`
 
-## Step 0: open the task list
+## Step 0: the checklist
 
-Create these with `TaskCreate`, then move each through `in_progress` and `completed`.
+Track these steps with the session's task-list tools where it carries them. Newer harnesses leave those tools out by default, and a session without them works the list in order as written.
 
 1. Confirm the pull request is mergeable
 2. Settle the published description
