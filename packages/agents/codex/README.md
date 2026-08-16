@@ -1,5 +1,5 @@
 # repotools-agents-codex
 
-This package holds harness-optimized agent primitives for Codex. A primitive belongs here once somebody writes Codex-specific tooling for it, rather than in the harness-neutral `common` package.
+This package holds harness-optimized agent primitives for Codex. Its skills use `codex-` names so they can coexist with other harness packages under APM's converged `.agents/skills/` deployment path.
 
-The package is a deliberate scaffold: its layout, CI, versioning, and gitignores are already correct, so the first primitive needs no further setup work. The root manifest starts deploying this package to its target once real content arrives.
+The skills use Codex-native delegated agents, thread identity, process waiting, and operator interaction. Harness-neutral instructions remain in the sibling `common` package.

@@ -1,14 +1,13 @@
 ---
-# APM sub-package scaffold: reserved for codex-optimized primitives.
-# Restricted to the codex target. Empty until a later program fills
-# it in; the layout, CI, versioning, and gitignores are already
-# correct so the first primitive can land without further setup.
+# APM sub-package: Codex-optimized primitives. Restricted to the
+# codex target. Skill names carry a codex- prefix so they can coexist
+# with another harness's skills in the converged .agents/skills path.
 # Consumers pin it as tbhb/repotools/packages/agents/codex#vX.Y.Z; the
 # repo root manifest depends on it by local path. The cog pre-bump
 # hook keeps `version` in lockstep with the root (see cog.toml).
 name: repotools-agents-codex
 version: 0.8.0
-description: Codex agent primitives for tbhb repositories (scaffold)
+description: Codex agent primitives for tbhb repositories
 author: tbhb
 license: Apache-2.0
 targets:

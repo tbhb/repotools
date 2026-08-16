@@ -289,6 +289,7 @@ retargets
 retunes
 reviewdog
 rhysd
+rollouts
 rollup
 rowserrcheck
 rpop
@@ -360,6 +361,8 @@ testpaths
 textfmt
 thelper
 tmpl
+tiktoken
+tonumber
 tolower
 tombi
 toplevel
