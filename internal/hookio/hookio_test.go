@@ -18,7 +18,7 @@ import (
 	"github.com/tbhb/repotools/internal/hookio"
 )
 
-// errUnreadable stands in for whatever the filesystem returns when the Edit
+// errUnreadable represents whatever the filesystem returns when the Edit
 // replay fails to open its target.
 var errUnreadable = errors.New("unreadable")
 

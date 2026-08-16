@@ -16,11 +16,12 @@
 // width explains are the author's own, one sentence per line, which the
 // message names as semantic rather than width-driven because the fix differs.
 //
-// That inference needs evidence to be worth stating. Across a handful of
-// breaks the two causes are indistinguishable: three sentences that happen to
-// end near column 45 fit a wrap at 45 exactly as well as they fit deliberate
-// sentence breaks. Below MinEvidence breaks the report names no cause at all.
-// The verdict never changes, only the explanation offered for it.
+// That inference needs evidence to be worth stating. Across a few breaks the
+// two causes are indistinguishable: three sentences that happen to end near
+// column 45 fit a wrap at 45 exactly as well as they fit deliberate sentence
+// breaks. When the break count falls below MinEvidence, the report doesn't
+// name a cause at all. The verdict never changes, only the explanation
+// offered for it.
 package markdown
 
 import (
@@ -380,9 +381,9 @@ func Analyze(text string) Report {
 	}
 }
 
-// Unwrap joins every wrapped paragraph back into a single line. The first
-// line keeps its indentation and any list or quote marker; the rest
-// contribute their text alone, joined with single spaces.
+// Unwrap joins every wrapped paragraph back into one line. The first line
+// keeps its indentation and any list or quote marker; the rest contribute
+// their text alone, joined with single spaces.
 func Unwrap(text string) string {
 	report := Analyze(text)
 	if report.OK() {

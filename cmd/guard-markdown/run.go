@@ -100,7 +100,7 @@ func newRootCmd(s streams) *cobra.Command {
 
 // runHook answers a PreToolUse payload. Every path that can't reach a
 // verdict returns nil. A hook must never block a call it failed to parse,
-// and it must never block one it holds no opinion about.
+// and it must never block one it doesn't have an opinion about.
 func runHook(s streams) error {
 	payload, err := hookio.Decode(s.in)
 	if err != nil {

@@ -145,7 +145,7 @@ func TestBreakExplainedBy(t *testing.T) {
 func TestBreaksSkipsBlankContinuation(t *testing.T) {
 	t.Parallel()
 
-	// A run whose second line carries no words yields no measurable break.
+	// A run whose second line has no words doesn't produce a measurable break.
 	got := markdown.Breaks([]markdown.Paragraph{{Start: 1, Lines: []string{"alpha", "   "}}})
 	assert.Empty(t, got)
 }

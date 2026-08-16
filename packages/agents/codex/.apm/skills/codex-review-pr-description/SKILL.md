@@ -18,7 +18,7 @@ The argument is the repository root. Default to the current directory. Read the 
 
 Don't repeat mechanical validator rules. Judge:
 
-- truthfulness: the branch supports every claim and verification command
+- truthfulness: the branch supports each claim and each verification command
 - substance: sections answer the template rather than restating the diff
 - fit: title, summary, labels, and draft status cover the whole branch
 - coherence: the branch forms one mergeable and revertible change

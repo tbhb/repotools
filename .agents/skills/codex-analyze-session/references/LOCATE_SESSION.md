@@ -2,7 +2,7 @@
 
 Use this when the operator named a session without giving a usable path. Reading transcript files in the calling session costs more context than the analysis that follows, so a fresh delegated agent runs the streaming locator and returns one line.
 
-A fresh delegated agent with `fork_turns: "none"` is enough. Matching a file by its contents needs no judgment, and the answer is a single path.
+A fresh delegated agent with `fork_turns: "none"` is enough. Matching a file by its contents doesn't need judgment, and the answer is one path.
 
 ## The template
 

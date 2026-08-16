@@ -82,7 +82,7 @@ func TestCheckMode(t *testing.T) {
 		assert.Equal(t, exitOK, got.code)
 	})
 
-	// A generator owns this file, so neither mode touches it.
+	// A generator writes this file, so neither mode touches it.
 	t.Run("generated changelog is skipped", func(t *testing.T) {
 		t.Parallel()
 		path := write(t, "CHANGELOG.md", wrapped)

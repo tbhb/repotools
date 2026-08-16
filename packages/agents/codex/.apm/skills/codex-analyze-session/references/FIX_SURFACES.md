@@ -57,6 +57,6 @@ Recommend fixes for one area of a session retrospective.
 
 ## Synthesis stays in the calling session
 
-Each agent sees one area. The calling session has the verified figures and the full set of findings no single agent had, and delegating synthesis to another agent discards that.
+Each agent sees one area. The calling session has the verified figures and the full set of findings that no agent had alone, and delegating synthesis to another agent discards that.
 
 Where two agents recommend the same fix independently, treat the agreement as evidence rather than duplication and put that fix first. Where recommendations conflict, record the conflict in the retro instead of resolving it silently.
