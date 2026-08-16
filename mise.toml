@@ -960,12 +960,14 @@ apm install
 
 # `apm audit --ci` replays the install into a scratch tree and diffs it
 # against the deployed files, which catches both hook-merge failures
-# above along with lockfile and content drift. --no-policy keeps the gate
-# offline: org policy discovery reaches for the git remote, and a
-# pre-commit hook has no business making a network call.
+# above along with lockfile and content drift. APM 0.28 scans all of each
+# harness root and crosses into registered worktrees below .claude and
+# .codex. The wrapper preserves every check while excluding only Unicode
+# findings inside those separate checkouts. --no-policy stays in the
+# wrapper because a pre-commit hook has no business making a network call.
 [tasks.lint-apm]
 description = "Check deployed APM primitives against the lockfile"
-run = "apm audit --ci --no-policy"
+run = "uv run python tools/apm_audit.py"
 
 # --- Utilities ---
 
