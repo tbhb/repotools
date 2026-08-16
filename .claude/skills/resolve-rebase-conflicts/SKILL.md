@@ -46,9 +46,9 @@ That `|||||||` section is the common ancestor, and it's the most useful part of 
 
 A bare `=======` line isn't a marker on its own. It underlines a setext heading in ordinary Markdown, so the scripts here match only `<<<<<<<`, `|||||||`, and `>>>>>>>`.
 
-## Step 0: open the task list
+## Step 0: the checklist
 
-Create these with `TaskCreate`, then move each through `in_progress` and `completed`.
+Track these steps with the session's task-list tools where it carries them. Newer harnesses leave those tools out by default, and a session without them works the list in order as written.
 
 1. Classify every conflicted path
 2. Resolve the mechanical ones
@@ -56,7 +56,7 @@ Create these with `TaskCreate`, then move each through `in_progress` and `comple
 4. Read the rest, and stage what you resolved
 5. Hand back
 
-Where a class turns out empty, close its task and say so rather than deleting it. Which classes the stop produced is part of the report at the end.
+Where a class turns out empty, mark its step done and say so rather than dropping it. Which classes the stop produced is part of the report at the end.
 
 The scripts stop with a plain message when no rebase is in progress. Say that and hand back, because nothing here applies outside one.
 

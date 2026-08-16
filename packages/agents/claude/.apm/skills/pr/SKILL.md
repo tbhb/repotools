@@ -30,9 +30,9 @@ This skill ends when the pull request is open. From there `watch-pr`, `fix-pr`, 
 
 !`bash ${CLAUDE_SKILL_DIR}/scripts/preflight.sh`
 
-## Step 0: open the task list
+## Step 0: the checklist
 
-Create these with `TaskCreate`, then move each through `in_progress` and `completed`.
+Track these steps with the session's task-list tools where it carries them. Newer harnesses leave those tools out by default, and a session without them works the list in order as written.
 
 1. Confirm the branch is ready
 2. Draft the description in PR_AGENTDESC.md

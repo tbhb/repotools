@@ -19,9 +19,9 @@ If you give neither, the preflight says so and prints how to find it. Send a Hai
 
 !`bash ${CLAUDE_SKILL_DIR}/scripts/preflight.sh ${ARGUMENTS}`
 
-## Step 0: open the task list
+## Step 0: the checklist
 
-Create these tasks with `TaskCreate`, then move each to `in_progress` and `completed` as you go. They're the checklist the rest of this document expands.
+Track these steps with the session's task-list tools where it carries them. Newer harnesses leave those tools out by default, and a session without them works the list in order as written. They're the checklist the rest of this document expands.
 
 1. Read what the line numbers identify
 2. Test the session's own conclusions

@@ -26,9 +26,9 @@ Those hooks stay registered for the rest of the session so they carry a scope. P
 
 !`bash ${CLAUDE_SKILL_DIR}/scripts/preflight.sh`
 
-## Step 0: open the task list
+## Step 0: the checklist
 
-Create these tasks with `TaskCreate`, then move each to `in_progress` and `completed` as you go. They're the checklist the rest of this document expands.
+Track these steps with the session's task-list tools where it carries them. Newer harnesses leave those tools out by default, and a session without them works the list in order as written. They're the checklist the rest of this document expands.
 
 1. Choose the rebase base
 2. Group the changes into atomic commits
