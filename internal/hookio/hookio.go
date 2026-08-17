@@ -3,9 +3,9 @@
 
 // Package hookio decodes Claude Code hook payloads and writes decisions.
 //
-// No rule of its own lives here. Every check binary gating a tool call needs
-// the same two pieces: recovering the file content that call would produce,
-// then answering with an allow or a deny.
+// This package doesn't define a rule of its own. Every check binary gating a
+// tool call needs the same two pieces: recovering the file content that call
+// would produce, then answering with an allow or a deny.
 //
 // Both live here, so a new cmd/check-* binary supplies only its rule.
 package hookio
@@ -59,7 +59,7 @@ func Decode(r io.Reader) (Payload, error) {
 
 // Resolve recovers the file content the tool call would produce.
 //
-// Write supplies the whole document, which needs no reconstruction.
+// Write supplies the whole document, which doesn't need reconstruction.
 //
 // Edit supplies only a fragment, which may begin mid-paragraph and tells
 // you nothing on its own. The edit replays against the file on disk instead.

@@ -23,7 +23,7 @@ The scripts read the index stages rather than the marker labels, so the naming h
 
 ## Marker shape
 
-With `merge.conflictStyle` set to `diff3` or `zdiff3`, a conflict carries three sections rather than two:
+With `merge.conflictStyle` set to `diff3` or `zdiff3`, a conflict has three sections rather than two:
 
 ```text
 <<<<<<< HEAD
@@ -59,7 +59,7 @@ The scripts stop with a plain message when no rebase is in progress. Say that an
 bash .agents/skills/codex-resolve-rebase-conflicts/scripts/classify-conflicts.sh
 ```
 
-One call reads every unmerged path and says what shape its conflict has, with the evidence for the claim printed beside it. Read that output before opening a single file.
+One call reads every unmerged path and says what shape its conflict has, with the evidence for the claim printed beside it. Read that output before opening any file.
 
 The classes:
 

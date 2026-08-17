@@ -30,13 +30,13 @@ Rules measuring a whole block are the clearest example. Editing one sentence cha
 
 ## Prefer a mechanism to a reminder
 
-A fix a script can enforce belongs in the script. Number the mechanical fixes in the order you would build them, and give each one the round trips it would have saved.
+A fix a script can enforce belongs in the script. Number the mechanical fixes in the order you would build them, and say how many round trips each would have saved.
 
 State the cost too. A hook that runs on each write enforces a rule and adds latency to each write, and a recommendation listing only the improvement gives the reader no way to compare it against the others.
 
-## Record how the analysis ran
+## What belongs in the method note
 
-The method note records anything affecting how much a reader should trust the findings. Put a test that stopped checking anything there. Agents overwriting each other's files belong there as well.
+Anything affecting how much a reader should trust the findings belongs in the method note. Put a test that stopped checking anything there. Agents overwriting each other's files belong there as well.
 
 Readers trust this section most. A document stating where its own process failed is more credible than one reporting only successes.
 

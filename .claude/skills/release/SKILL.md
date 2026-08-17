@@ -27,13 +27,13 @@ The clone borrows objects from the local repository through `--reference`, so it
 
 A fresh clone has a clean working tree, and its `HEAD` is the release commit by construction. The clone makes both trivially true, so readiness reports them as `OK` without having checked anything. Those checks existed to catch an operator releasing while believing uncommitted or unmerged work was in it. `prepare` prints that as a `NOTE` read from the invoking checkout instead, naming the commits the release leaves behind. It's an advisory rather than a gate, because a branch in flight is the normal state here and never a reason a release of main can't proceed.
 
-## What the release does, so a `FAIL` line means something
+## Inside the release workflow, so a `FAIL` line means something
 
 The release happens inside `.github/workflows/release.yml` and nowhere else. Cocogitto derives the version. It writes the changelog and rewrites the published version literals, and the commit it makes never leaves the runner. The workflow replays that commit through `createCommitOnBranch`, so GitHub creates it and signs it with its own key. Then the workflow replaces cog's lightweight tag with an SSH-signed annotated one and pushes the tag.
 
-Two signatures, from two signers, and neither one can stand in for the other. A GitHub App holds no key, so only GitHub can sign a commit under the release App. No API creates a signed tag, so a key on the runner has to sign that one, under the tagger identity GitHub verifies it against. Nothing local reproduces either. The guard hook refuses local tagging, local bumping, and a dispatch that goes around the task.
+Two signatures, from two signers, and neither one can do the other's job. A GitHub App has no key of its own, so only GitHub can sign a commit under the release App. No API creates a signed tag, so a key on the runner has to sign that one, under the tagger identity GitHub verifies it against. Nothing local reproduces either. The guard hook refuses local tagging, local bumping, and a dispatch that goes around the task.
 
-Nothing here edits a changelog or moves a version pin by hand. Cog owns both. Where a commit does turn out to be necessary, it goes through the `commit` skill, which owns the draft file, the trailers, and the gates.
+Nothing here edits a changelog or moves a version pin by hand. Cog owns both. Where a commit does turn out to be necessary, it goes through the `commit` skill, which writes the draft file with its trailers and runs the gates.
 
 ## Which version
 
@@ -51,7 +51,7 @@ bash .claude/skills/release/scripts/release-clone.sh prepare
 
 It prints where the clone is, which commit of the release branch it holds, and a `NOTE` naming any local work the release doesn't carry.
 
-Read that `NOTE` out to the operator whenever it appears, before going further. It's the one thing this skill knows that nobody else does, and the case it exists for is the obvious one: work sitting on the branch in front of you that you assumed was going out. Say what the release would leave behind and let the operator decide. Landing it first and preparing again is the fix where they want it in. Going on is fine where they don't.
+Read that `NOTE` out to the operator whenever it appears, before going further. It's the one thing this skill knows that nobody else does, and the case it exists for is the obvious one: work sitting on the branch in front of you that you assumed was going out. Say what the release would leave behind and let the operator decide. Merging it first and preparing again is the fix where they want it in. Going on is fine where they don't.
 
 ## Step 2: readiness
 
@@ -77,7 +77,7 @@ This is the step a task can't do, and the reason this is a skill.
 
 Where the operator named a version, that number wins. Pass it through. If readiness derived a different one, say so in a line before dispatching, because the difference is worth seeing even when the operator has already decided the answer.
 
-With nothing named, the automatic path derives the version from the Conventional Commit types since the last tag. A run of fixes and chores yields a patch bump where the operator wanted a minor, and #25 exists because that went unnoticed until after the tag. Don't dispatch the automatic path on an assumption. Show the derived number with the commits behind it and confirm.
+With nothing named, the automatic path derives the version from the Conventional Commit types since the last tag. A run of fixes and chores yields a patch bump where the operator wanted a minor, and #25 exists because nobody saw that difference until after the tag. Don't dispatch the automatic path on an assumption. Show the derived number with the commits behind it and confirm.
 
 ```text
 bash .claude/skills/release/scripts/release-clone.sh run preview-changelog
@@ -89,7 +89,7 @@ Then get a second opinion on the number, from an agent that reads the commits ra
 Skill(review-release-version, args: "<the clone path from step 1>")
 ```
 
-It returns a version, cog's number, and `AGREE` or `DISAGREE`. Cog derives a bump from Conventional Commit types alone, which is right whenever a type describes what a change does to consumers and wrong whenever it describes what its author was doing. A `build:` commit rewriting the vendored payload reaches every consumer on the next sync and derives a patch, and that has already produced a release numbered smaller than the change it carried. The reviewer reads the published surface for that gap. A `DISAGREE` isn't a veto and never stops the release on its own. Show it to the operator with the reasoning intact and let them settle it.
+It returns a version, cog's number, and `AGREE` or `DISAGREE`. Cog derives a bump from Conventional Commit types alone, which is right whenever a type describes what a change does to consumers and wrong whenever it describes what its author was doing. A `build:` commit rewriting the vendored payload reaches every consumer on the next sync and derives a patch, and that has already produced a release whose number understated the change. The reviewer reads the published surface for that gap. A `DISAGREE` isn't a veto and never stops the release on its own. Show it to the operator with the reasoning intact and let them settle it.
 
 Print this first, so the operator reads it in your message text rather than in a widget that truncates:
 
@@ -148,7 +148,7 @@ Monitor({
 })
 ```
 
-Pass the ID recorded in step 4, or `none`. This watcher reads GitHub rather than a checkout, so it needs no clone.
+Pass the ID recorded in step 4, or `none`. This watcher reads GitHub rather than a checkout, so it doesn't need the clone.
 
 The lines to expect:
 
@@ -156,7 +156,7 @@ The lines to expect:
 - `PASS <step>`, `SKIP <step>`, or `FAIL <step> (<conclusion>)`, one per step as it settles
 - `RELEASE RUN SUCCEEDED <url>`, `RELEASE RUN <CONCLUSION> <url>`, `TIMEOUT run <id> ...`, or `NO RUN registered ...` to close
 
-Running the same command through `Bash` blocks to the same ending, with the exit code carrying the outcome: `0` the run succeeded, `1` it didn't, `2` the wait ran out or no run appeared. Prefer `Monitor`.
+Running the same command through `Bash` blocks to the same ending, with the exit code reporting the outcome: `0` the run succeeded, `1` it didn't, `2` the wait ran out or no run appeared. Prefer `Monitor`.
 
 Never dispatch again on an unclear answer. A `TIMEOUT` or a `NO RUN` says the state is unknown, not that nothing happened, and the run may well be mid-tag. Report what the watcher said, give the run list command, and stop. A stalled release costs a look. Dispatching twice costs a retracted tag.
 
@@ -164,7 +164,7 @@ Never dispatch again on an unclear answer. A `TIMEOUT` or a `NO RUN` says the st
 
 ## Step 6: verify
 
-The release landed a commit and a tag on the branch, which leaves the clone describing the state before its own release.
+The release pushed a commit and a tag to the branch, which leaves the clone describing the state before its own release.
 
 Throw it away and take a fresh one, then verify:
 
@@ -182,7 +182,7 @@ That task checks that:
 - it names the release tagger
 - the commit beneath it carries a signature
 - that commit names the release App as its author
-- origin carries the same tag object
+- origin has the same tag object
 - GitHub reports the tag verified
 - GitHub reports the release commit verified
 - the tag is reachable from `main`
@@ -190,7 +190,7 @@ That task checks that:
 
 Annotation is the sharp check. Cog drives libgit2 and can only make a lightweight tag, which `push --follow-tags` silently leaves behind. To work around exactly that, the workflow deletes and re-creates the tag signed. A `FAIL` on that line means the workaround didn't take and the tag on the remote isn't the one consumers should pin.
 
-Signing splits into two assertions rather than one, because two signers produce them and either can fail alone. Every release from v0.3.0 through v0.5.0 carried a verified tag over an unsigned commit, and a check reading the tag by itself called each of them good. The bump runs under `--skip-ci`, so CI skips the release commit entirely, which leaves this task as the only thing standing between a bad release commit and every consumer.
+Signing splits into two assertions rather than one, because two signers produce them and either can fail alone. Every release from v0.3.0 through v0.5.0 has a verified tag over an unsigned commit, and a check reading the tag by itself called each of them good. The bump runs under `--skip-ci`, so CI skips the release commit entirely, which leaves this task as the only thing standing between a bad release commit and every consumer.
 
 ## Step 7: report and clean up
 
@@ -216,4 +216,4 @@ The tag is the whole release. Consumers resolve the ref directly through apm, th
 - `git`, `mise`, `gh` authenticated, and `jq`
 - an `origin` remote, which the clone comes from
 
-This skill requires nothing of the checkout you invoke from. It can sit on any branch and trail the remote while carrying uncommitted work, and the release is unaffected either way. The clone script says so where something is missing rather than improvising a substitute.
+This skill requires nothing of the checkout you invoke from. Any branch does, and it can trail the remote or hold uncommitted changes. The release is unaffected either way. The clone script says so where something is missing rather than improvising a substitute.

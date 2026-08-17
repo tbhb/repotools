@@ -1,7 +1,7 @@
 ---
 name: codex-write-pr-description
 description: >-
-  Write or revise PR_AGENTDESC.md from the branch, its commits, and the repository template, then clear the mechanical validator. Use as a delegated writer from codex-pr, codex-fix-pr, or codex-merge-pr. Pass review findings or branch-drift notes in the task.
+  Write or revise PR_AGENTDESC.md from the branch, its commits, and the repository template, then run the mechanical validator until it reports nothing. Use as a delegated writer from codex-pr, codex-fix-pr, or codex-merge-pr. Pass review findings or branch-drift notes in the task.
 ---
 
 # Write a pull request description
@@ -14,7 +14,7 @@ Gather context once:
 bash .agents/skills/codex-write-pr-description/scripts/context.sh
 ```
 
-Write `PR_AGENTDESC.md` with exactly these elements: YAML frontmatter containing `base`, `draft`, `labels`, `reviewers`, `assignees`, and `milestone`, followed by a Conventional Commits level-one title. Put every pull request template section after the title and keep their order. Use a nonempty label list drawn from the context.
+Write `PR_AGENTDESC.md` with exactly these elements: YAML frontmatter containing `base`, `draft`, `labels`, `reviewers`, `assignees`, and `milestone`, followed by a Conventional Commits level-one title. Put every section the repository template declares after the title, in the template's order. Use a nonempty label list drawn from the context.
 
 Describe the whole branch. Keep Summary, Why, Verification, Risk, and Related distinct. Verification names commands actually run. Avoid counts, diff narration, unsupported claims, selling language, and request/session/model/tool provenance. Preserve accurate existing prose during revisions.
 

@@ -15,7 +15,7 @@ hooks:
 
 Settle every conflicted path and stage it, so the rebase can advance. This skill ends there. Continuing the replay and verifying the result belong to the `rebase` skill.
 
-A guard hook runs alongside. It refuses `--ours` and `--theirs`, which mean the opposite of what they read during a rebase, and it refuses staging a file that still carries markers.
+A guard hook runs alongside. It refuses `--ours` and `--theirs`, which mean the opposite of what they read during a rebase, and it refuses staging a file with markers still in it.
 
 ## The inversion, once
 
@@ -30,7 +30,7 @@ The scripts read the index stages rather than the marker labels, so the naming h
 
 ## Marker shape
 
-With `merge.conflictStyle` set to `diff3` or `zdiff3`, a conflict carries three sections rather than two:
+With `merge.conflictStyle` set to `diff3` or `zdiff3`, a conflict has three sections rather than two:
 
 ```text
 <<<<<<< HEAD
@@ -66,7 +66,7 @@ The scripts stop with a plain message when no rebase is in progress. Say that an
 bash .claude/skills/resolve-rebase-conflicts/scripts/classify-conflicts.sh
 ```
 
-One call reads every unmerged path and says what shape its conflict has, with the evidence for the claim printed beside it. Read that output before opening a single file.
+One call reads every unmerged path and says what shape its conflict has, with the evidence for the claim printed beside it. Read that output before opening any file.
 
 The classes:
 
@@ -123,7 +123,7 @@ Stage what you resolved, by name:
 git add -- path/one path/two
 ```
 
-Never `git add -A` or `git add .`. During a rebase those sweep in whatever an earlier commit in the replay left behind. The guard refuses both, along with any file that still carries markers.
+Never `git add -A` or `git add .`. During a rebase those sweep in whatever an earlier commit in the replay left behind. The guard refuses both, along with any file with markers still in it.
 
 ## Step 5: hand back
 
