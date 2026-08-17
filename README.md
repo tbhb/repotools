@@ -7,8 +7,8 @@ Shared agent tooling for tbhb repositories. The repo provides Go command-line to
 Repositories across tbhb install the shared primitives with the [APM CLI](https://microsoft.github.io/apm/quickstart/):
 
 ```bash
-apm install tbhb/repotools/packages/agents/claude#v0.8.0
-apm install tbhb/repotools/packages/agents/common#v0.8.0
+apm install tbhb/repotools/packages/agents/claude#v0.9.0
+apm install tbhb/repotools/packages/agents/common#v0.9.0
 ```
 
 The package deploys these primitives from sub-packages under [`packages/agents/`](packages/agents/): `claude` carries the skills below plus the `guard-markdown` hook declaration, and `common` carries the harness-neutral `worktree-wip` instructions.
@@ -20,7 +20,7 @@ The package deploys these primitives from sub-packages under [`packages/agents/`
 | `worktree-wip` | instructions | Stash and work-in-progress rules for repos that run more than one agent worktree session. |
 | `guard-markdown` | hook | `PreToolUse` gate on `Write` and `Edit` that refuses Markdown whose paragraphs span more than one line. |
 
-Pinning the bare repo (`apm install tbhb/repotools#v0.8.0`) resolves the root workspace manifest, whose dependencies on the four sub-packages under `packages/agents/` are local paths. A remote consumer's `apm` resolves those transitively, with each sub-package gated by its own targets, so the bare pin gives a claude-only consumer exactly what the `claude` and `common` pins deliver while the codex and agy scaffolds skip on target intersection. This repo installs its own package the way a consumer does: `apm install` deploys the primitives into the local harness layout, and CI rejects drift between the `packages/agents/*/.apm/` sources and the deployed copies.
+Pinning the bare repo (`apm install tbhb/repotools#v0.9.0`) resolves the root workspace manifest, whose dependencies on the four sub-packages under `packages/agents/` are local paths. A remote consumer's `apm` resolves those transitively, with each sub-package gated by its own targets, so the bare pin gives a claude-only consumer exactly what the `claude` and `common` pins deliver while the codex and agy scaffolds skip on target intersection. This repo installs its own package the way a consumer does: `apm install` deploys the primitives into the local harness layout, and CI rejects drift between the `packages/agents/*/.apm/` sources and the deployed copies.
 
 ## Checks
 
@@ -37,7 +37,7 @@ A check is one rule enforced everywhere it matters. The same binary answers to a
 ```yaml
 repos:
   - repo: https://github.com/tbhb/repotools
-    rev: v0.8.0
+    rev: v0.9.0
     hooks:
       - id: guard-markdown
 ```

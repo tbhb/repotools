@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file. See [conven
 - - -
 <!-- release -->
 
+## [v0.9.0](https://github.com/tbhb/repotools/compare/49c1017fba1def1ab6099fe53e16678d79bf4020..v0.9.0) - 2026-08-17
+
+### Features
+
+- (**skills**) add Codex-native agent workflows (#66) - ([10dd0d1](https://github.com/tbhb/repotools/commit/10dd0d1c785c06695e336a8b6e0a22c6a56c5e69)) - [@tbhb](https://github.com/tbhb)
+
+### Bug Fixes
+
+- (**apm**) exclude nested worktrees from audit - ([71c9980](https://github.com/tbhb/repotools/commit/71c9980036d533d1a76a97b6cab9ab38f8ff5cda)) - [@tbhb](https://github.com/tbhb)
+- (**skills**) stop requiring TaskCreate for the step checklists (#65) - ([49c1017](https://github.com/tbhb/repotools/commit/49c1017fba1def1ab6099fe53e16678d79bf4020)) - [@tbhb](https://github.com/tbhb)
+
+- - -
+
+<!-- release -->
+
 ## [v0.8.0](https://github.com/tbhb/repotools/compare/54de242307a5745ee1e6efad2f2157943a40a917..v0.8.0) - 2026-08-15
 
 ### Bug Fixes
