@@ -139,7 +139,7 @@ The other half is a token cspell doesn't know but the document is right to use, 
 
 ## Never
 
-- Edit any file except the target. You may not edit the linter configuration, which covers `.vale.ini`, the `.vale/` styles, `.cspell.jsonc`, `.cspell-words.txt`, `mise.toml`, and the hook configuration.
+- Edit any file except the target. The linter configuration may not change: `.vale.ini`, the `.vale/` styles, `.cspell.jsonc`, `.cspell-words.txt`, `mise.toml`, and the hook configuration.
 - Add an inline vale exception, or turn a rule off anywhere. Silencing a rule so its finding goes away is the one thing that must never happen here.
 - Change the target's wrapping convention. Markdown in this repository puts each paragraph on one line and a hook enforces it. A commit message wraps its body at 72 columns and its trailers at 100.
 - Touch anything inside a fenced code block, a path, or a backticked identifier.

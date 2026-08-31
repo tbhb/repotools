@@ -1,5 +1,5 @@
 lockfile_version: '1'
-generated_at: '2026-09-06T23:57:09.981074+00:00'
+generated_at: '2026-09-07T01:01:08.087947+00:00'
 apm_version: 0.28.0
 dependencies:
 - repo_url: _local/agy
@@ -185,11 +185,11 @@ dependencies:
     .claude/skills/watch-pr/scripts/guard-watch.sh: sha256:6fc489a3c60f9b669fa9290d871532ddf0dbae056f4ce50a7335238030fccba8
     .claude/skills/watch-pr/scripts/watch-checks.sh: sha256:341a13a8e9ddf14f3adadfc2c905ee848357c61a0375bd539edea6710bb49c76
     .claude/skills/watch-pr/tokens.json: sha256:f595482b0bd5d836ba393b7a2d4e3646ee97eba390f60fe0d5d4a932aa8d5aab
-    .claude/skills/write-pr-description/SKILL.md: sha256:509d1f9c89286a8737bbc17a0df9e5b36762fd50390cd59682d3442d145292e4
+    .claude/skills/write-pr-description/SKILL.md: sha256:a8e494a6ebeba88588760340db711f6c8c3b8e6c5ddc39be9b0328196e657510
     .claude/skills/write-pr-description/scripts/context.sh: sha256:8f2963be66de209a31573696847645f7252028a5648ed2b0f97a71cc39ff72d6
     .claude/skills/write-pr-description/scripts/guard-draft.sh: sha256:8c0a80c080fa29e231745de949d5821f273f062fc6ae0ed78b6cc4167da8d443
     .claude/skills/write-pr-description/tokens.json: sha256:91f40292e5db8fec5e2a09136bb1dbdfedef69fd2eb3f68a6a7182ed337053a5
-    .claude/skills/write-prose-fix/SKILL.md: sha256:da29ee08247b06863c10a55a759d9b6b7405c1d7def15a8e33954933541349cd
+    .claude/skills/write-prose-fix/SKILL.md: sha256:29d55d8752ef476b87066f3fdc8cd407a09cf1f72980fc24daed6ea34d856bf6
     .claude/skills/write-prose-fix/scripts/context.sh: sha256:a8f111896e3a438307b1c7467724f8ad43ee25c0234fae7b0939e256ae333aca
     .claude/skills/write-prose-fix/tokens.json: sha256:38ee03536cd286dd9e51ff4342e574c2e2d62ce5c89dcab5ec368c95d94f23de
   source: local
@@ -1956,7 +1956,7 @@ deployments:
   owners:
   - ./packages/agents/claude
   active_owner: ./packages/agents/claude
-  content_hash: sha256:509d1f9c89286a8737bbc17a0df9e5b36762fd50390cd59682d3442d145292e4
+  content_hash: sha256:a8e494a6ebeba88588760340db711f6c8c3b8e6c5ddc39be9b0328196e657510
 - kind: project-relative
   target: claude
   value: .claude/skills/write-pr-description/scripts/context.sh
@@ -2001,7 +2001,7 @@ deployments:
   owners:
   - ./packages/agents/claude
   active_owner: ./packages/agents/claude
-  content_hash: sha256:da29ee08247b06863c10a55a759d9b6b7405c1d7def15a8e33954933541349cd
+  content_hash: sha256:29d55d8752ef476b87066f3fdc8cd407a09cf1f72980fc24daed6ea34d856bf6
 - kind: project-relative
   target: claude
   value: .claude/skills/write-prose-fix/scripts/context.sh
