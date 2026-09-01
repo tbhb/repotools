@@ -29,7 +29,8 @@ func TestDecode(t *testing.T) {
 		t.Parallel()
 		p, err := hookio.Decode(strings.NewReader(
 			`{"hook_event_name":"PreToolUse","tool_name":"Write",` +
-				`"tool_input":{"file_path":"a.md","content":"x"}}`))
+				`"tool_input":{"file_path":"a.md","content":"x"}}`,
+		))
 		require.NoError(t, err)
 		assert.Equal(t, "PreToolUse", p.HookEventName)
 		assert.Equal(t, "Write", p.ToolName)
