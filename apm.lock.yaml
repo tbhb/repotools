@@ -1,17 +1,17 @@
 lockfile_version: '1'
-generated_at: '2026-08-17T02:55:39.582804+00:00'
+generated_at: '2026-08-18T04:17:09.903444+00:00'
 apm_version: 0.28.0
 dependencies:
 - repo_url: _local/agy
   name: repotools-agents-agy
-  version: 0.8.0
+  version: 0.9.0
   package_type: apm_package
   source: local
   local_path: ./packages/agents/agy
   declared_license: Apache-2.0
 - repo_url: _local/claude
   name: repotools-agents-claude
-  version: 0.8.0
+  version: 0.9.0
   package_type: apm_package
   deployed_files:
   - .claude/skills/analyze-session
@@ -197,7 +197,7 @@ dependencies:
   declared_license: Apache-2.0
 - repo_url: _local/codex
   name: repotools-agents-codex
-  version: 0.8.0
+  version: 0.9.0
   package_type: apm_package
   deployed_files:
   - .agents/skills/codex-analyze-session
@@ -361,7 +361,7 @@ dependencies:
   declared_license: Apache-2.0
 - repo_url: _local/common
   name: repotools-agents-common
-  version: 0.8.0
+  version: 0.9.0
   package_type: apm_package
   deployed_files:
   - .agents/rules/worktree-wip.md
