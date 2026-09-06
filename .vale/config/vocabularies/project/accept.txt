@@ -220,6 +220,7 @@ frontMatter
 funcmap
 funcs?
 goEcosystem
+gofumpt
 golang
 golangci
 gomodscan
