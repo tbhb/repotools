@@ -14,7 +14,7 @@ Write `PR_AGENTDESC.md` at the repository root, then return. You run forked, so 
 
 ## Arguments
 
-`$ARGUMENTS` carries the repository root, and after it whatever the caller wants addressed. A first draft arrives with nothing extra. A revision includes the findings `review-pr-description` returned, or a note that remediation added commits the description hasn't caught up with.
+`$ARGUMENTS` carries the repository root, and after it whatever the caller wants addressed. A first draft arrives with nothing extra. Any revision has the findings `review-pr-description` returned, or a note that remediation added commits the description hasn't caught up with.
 
 Treat any findings in the arguments as the work. Resolve each one and say so.
 
