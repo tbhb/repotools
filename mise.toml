@@ -126,7 +126,7 @@ apm = "0.29.0"
 # does not.
 ast-grep = "0.45.3"
 jq = "1.8.2"
-shfmt = "3.13.1"
+shfmt = "3.14.0"
 uv = "0.12.1"
 
 # --- Setup ---
