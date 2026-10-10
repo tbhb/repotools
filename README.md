@@ -15,7 +15,7 @@ The package deploys these primitives from sub-packages under [`packages/agents/`
 
 | Primitive | Type | Purpose |
 | --- | --- | --- |
-| `commit` | skill | Group changes into one atomic commit, draft the message in `COMMIT_AGENTMSG`, review and lint it, confirm it, then commit and rebase. |
+| `commit` | skill | Group changes into one atomic commit, draft the message in `COMMIT_AGENTMSG`, review it, lint it, confirm it, then commit and rebase. |
 | `review-commit-message` | skill | Review a drafted message against the staged diff as an independent agent, for what linting can't see. |
 | `worktree-wip` | instructions | Stash and work-in-progress rules for repos that run more than one agent worktree session. |
 | `guard-markdown` | hook | `PreToolUse` gate on `Write` and `Edit` that refuses Markdown whose paragraphs span more than one line. |
